@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <!-- Meta -->
+
+    <meta charset="utf-8" />
+
+    <!-- Favicons Icon -->
+
+    <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.png" />
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Title -->
+
+    <title>Hisab Kitab | User</title>
+
+    <!-- PWA Version -->
+
+    <link rel="manifest" href="../manifest.json" />
+
+    <!-- Stylesheets -->
+
+    <link rel="stylesheet" type="text/css" href="../assets/css/style.css" />
+
+    <link rel="stylesheet" href="../assets/vendor/swiper/swiper-bundle.min.css" />
+
+    <!-- Google Fonts -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+
+  <body>
+<div class="page-wraper" id="Login-Page" style="display: none;" > 
+   
+
+<!-- Page Content -->
+<div class="page-content">
+
+<!-- Banner -->
+<div class="banner-wrapper shape-1">
+<div class="container inner-wrapper">
+<h2 class="dz-title">Customer Login</h2>
+</div>
+</div>
+<!-- Banner End -->
+
+<div class="container">
+<div class="account-area">
+<form class="">
+<div class="input-group">
+<input type="tel" placeholder="User Name" id="mobileNumber"   class="form-control">
+</div>
+<div class="input-group">
+<input type="text" placeholder="Password" id="Password" class="form-control be-0">
+<span class="input-group-text show-pass"> 
+<i class="fa fa-eye-slash" id="hide" ></i>
+<i class="fa fa-eye" id="show" ></i>
+<script type="text/javascript">
+
+let Password = document.getElementById("Password")
+
+hide.addEventListener("click", function(){
+Password.type = "text"
+})
+
+show.addEventListener("click", function(){
+Password.type = "password"
+})
+
+Password.type = "password"
+
+</script>
+</span>
+</div>
+
+<div class="input-group">
+<a href="#" id="LogInBtn"  class="btn mt-2 btn-primary w-100 btn-rounded">Login</a>
+</div>
+</form>
+</div>
+</div>
+</div>
+
+</div>
+
+    <div class="page-wraper" id="Main-Page"  style="display: block;">
+      <!-- Header -->
+
+      <header class="header transparent">
+        <div class="main-bar sticky-header bg-primary">
+          <div class="container">
+            <div class="header-content">
+              <div class="left-content">
+                <a href="javascript:void(0);" class="menu-toggler">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      opacity="0.4"
+                      d="M16.0755 2H19.4615C20.8637 2 22 3.14585 22 4.55996V7.97452C22 9.38864 20.8637 10.5345 19.4615 10.5345H16.0755C14.6732 10.5345 13.537 9.38864 13.537 7.97452V4.55996C13.537 3.14585 14.6732 2 16.0755 2Z"
+                      fill="#a19fa8"
+                    ></path>
+
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M4.53852 2H7.92449C9.32676 2 10.463 3.14585 10.463 4.55996V7.97452C10.463 9.38864 9.32676 10.5345 7.92449 10.5345H4.53852C3.13626 10.5345 2 9.38864 2 7.97452V4.55996C2 3.14585 3.13626 2 4.53852 2ZM4.53852 13.4655H7.92449C9.32676 13.4655 10.463 14.6114 10.463 16.0255V19.44C10.463 20.8532 9.32676 22 7.92449 22H4.53852C3.13626 22 2 20.8532 2 19.44V16.0255C2 14.6114 3.13626 13.4655 4.53852 13.4655ZM19.4615 13.4655H16.0755C14.6732 13.4655 13.537 14.6114 13.537 16.0255V19.44C13.537 20.8532 14.6732 22 16.0755 22H19.4615C20.8637 22 22 20.8532 22 19.44V16.0255C22 14.6114 20.8637 13.4655 19.4615 13.4655Z"
+                      fill="#a19fa8"
+                    ></path>
+                  </svg>
+                </a>
+              </div>
+
+              <div class="mid-content">
+                <span class="text-center text-white" id="HeaderName">Home</span>
+              </div>
+
+              <div class="right-content">
+                <a href="javascript:void(0);" class="theme-btn active">
+                  <svg class="dark" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                  </svg>
+
+                  <svg class="light" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="5"></circle>
+
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Sidebar -->
+
+      <div class="sidebar">
+        <div class="author-box">
+          <div class="dz-media">
+            <img src="../assets/images/images.png" class="rounded-circle" alt="author-image" />
+          </div>
+
+          <div class="dz-info" style="margin-top:10px;" >
+            <h5 class="username text-center text-white" id="username" >Offline</h5>
+          </div>
+        </div>
+
+        <ul class="nav navbar-nav">
+          <li class="nav-label">Main Menu</li>
+
+          <li>
+            <a class="nav-link" href="#" id="SideHome" >
+              <span class="dz-icon bg-pink light">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M9.14373 20.7821V17.7152C9.14372 16.9381 9.77567 16.3067 10.5584 16.3018H13.4326C14.2189 16.3018 14.8563 16.9346 14.8563 17.7152V20.7732C14.8562 21.4473 15.404 21.9951 16.0829 22H18.0438C18.9596 22.0023 19.8388 21.6428 20.4872 21.0007C21.1356 20.3586 21.5 19.4868 21.5 18.5775V9.86585C21.5 9.13139 21.1721 8.43471 20.6046 7.9635L13.943 2.67427C12.7785 1.74912 11.1154 1.77901 9.98539 2.74538L3.46701 7.9635C2.87274 8.42082 2.51755 9.11956 2.5 9.86585V18.5686C2.5 20.4637 4.04738 22 5.95617 22H7.87229C8.19917 22.0023 8.51349 21.8751 8.74547 21.6464C8.97746 21.4178 9.10793 21.1067 9.10792 20.7821H9.14373Z"
+                    fill="#130F26"
+                  />
+                </svg>
+              </span>
+
+              <span>Home</span>
+            </a>
+          </li>
+
+          <li>
+            <a class="nav-link" href="#" id="SidePrevious" >
+              <span class="dz-icon bg-skyblue light">
+                <i class="fa-solid fa-book"></i><br />
+              </span>
+
+              <span>My Entry</span>
+            </a>
+          </li>
+          <li>
+            <a class="nav-link" href="#" id="LogOutBtn" >
+              <span class="dz-icon bg-red light">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18" height="18" viewBox="0 0 24 24" version="1.1" class="svg-main-icon">
+                  <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <rect x="0" y="0" width="24" height="24" />
+
+                    <path
+                      d="M14.0069431,7.00607258 C13.4546584,7.00607258 13.0069431,6.55855153 13.0069431,6.00650634 C13.0069431,5.45446114 13.4546584,5.00694009 14.0069431,5.00694009 L15.0069431,5.00694009 C17.2160821,5.00694009 19.0069431,6.7970243 19.0069431,9.00520507 L19.0069431,15.001735 C19.0069431,17.2099158 17.2160821,19 15.0069431,19 L3.00694311,19 C0.797804106,19 -0.993056895,17.2099158 -0.993056895,15.001735 L-0.993056895,8.99826498 C-0.993056895,6.7900842 0.797804106,5 3.00694311,5 L4.00694793,5 C4.55923268,5 5.00694793,5.44752105 5.00694793,5.99956624 C5.00694793,6.55161144 4.55923268,6.99913249 4.00694793,6.99913249 L3.00694311,6.99913249 C1.90237361,6.99913249 1.00694311,7.89417459 1.00694311,8.99826498 L1.00694311,15.001735 C1.00694311,16.1058254 1.90237361,17.0008675 3.00694311,17.0008675 L15.0069431,17.0008675 C16.1115126,17.0008675 17.0069431,16.1058254 17.0069431,15.001735 L17.0069431,9.00520507 C17.0069431,7.90111468 16.1115126,7.00607258 15.0069431,7.00607258 L14.0069431,7.00607258 Z"
+                      fill="#fff"
+                      fill-rule="nonzero"
+                      opacity="0.3"
+                      transform="translate(9.006943, 12.000000) scale(-1, 1) rotate(-90.000000) translate(-9.006943, -12.000000) "
+                    />
+
+                    <rect fill="#ff4db8" opacity="0.3" transform="translate(14.000000, 12.000000) rotate(-270.000000) translate(-14.000000, -12.000000) " x="13" y="6" width="2" height="12" rx="1" />
+
+                    <path
+                      d="M21.7928932,9.79289322 C22.1834175,9.40236893 22.8165825,9.40236893 23.2071068,9.79289322 C23.5976311,10.1834175 23.5976311,10.8165825 23.2071068,11.2071068 L20.2071068,14.2071068 C19.8165825,14.5976311 19.1834175,14.5976311 18.7928932,14.2071068 L15.7928932,11.2071068 C15.4023689,10.8165825 15.4023689,10.1834175 15.7928932,9.79289322 C16.1834175,9.40236893 16.8165825,9.40236893 17.2071068,9.79289322 L19.5,12.0857864 L21.7928932,9.79289322 Z"
+                      fill="#fff"
+                      fill-rule="nonzero"
+                      transform="translate(19.500000, 12.000000) rotate(-90.000000) translate(-19.500000, -12.000000) "
+                    />
+                  </g>
+                </svg>
+              </span>
+
+              <span>Logout</span>
+            </a>
+          </li>
+
+          <li class="nav-label">Settings</li>
+
+          <li>
+            <div class="mode">
+              <span class="dz-icon bg-green light">
+                <i class="fa-solid fa-moon"></i>
+              </span>
+
+              <span>Dark Mode</span>
+
+              <div class="custom-switch">
+                <input type="checkbox" class="switch-input theme-btn" id="toggle-dark-menu" />
+
+                <label class="custom-switch-label" for="toggle-dark-menu"></label>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Page Content -->
+
+      <div class="page-content">
+        <div id="Home-Page" style="display: block; position: relative; top: 50px; left: 5px;">
+          <div class="content-inner pt-0">
+            <div class="container fb">
+              <!-- Search -->
+
+              <div class="m-b30"></div>
+
+              <!-- Dashboard Area -->
+
+              <div class="dashboard-area">
+                <!-- Features -->
+
+                <div class="features-box">
+                  <div class="row m-b20 g-3">
+<div class="col">
+   <button class="btn bg-secondary" style="width: 150px; height: 150px;">
+     <h4 style="color: white;">
+       <span style="font-size: 80px;" id="date" ></span><br />
+   
+     </h4>
+   </button>
+ </div>
+ 
+ <script type="text/javascript">
+ 
+
+var currentDate = new Date();
+
+var day = currentDate.getDate();
+
+ date.innerHTML = day
+ 
+ </script>
+ 
+                    <div class="col">
+                      <button class="btn bg-primary" id="PreviousEntryBtn" style="width: 150px; height: 150px;">
+                        <h4 style="color: white;">
+<svg xmlns="http://www.w3.org/2000/svg" class="my-3"  height="32" width="32" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path fill="#ffffff" d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160V416c0 53 43 96 96 96H352c53 0 96-43 96-96V320c0-17.7-14.3-32-32-32s-32 14.3-32 32v96c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V160c0-17.7 14.3-32 32-32h96c17.7 0 32-14.3 32-32s-14.3-32-32-32H96z"/></svg>
+<br>
+                            My Entry
+                        </h4>
+                      </button>
+                    </div>
+                  </div>
+
+
+                  <div class="row m-b20 g-3" style="position: relative; top: -10px;">
+
+
+                    <div class="col">
+                      <button class="btn bg-warning my-2" id="ManageProduct" style="width: 150px; height: 150px; position: relative; left:80px;">
+                        <h4 style="color: white;">
+<svg xmlns="http://www.w3.org/2000/svg" class="my-3" height="32" width="36" viewBox="0 0 576 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path fill="#ffffff" d="M0 24C0 10.7 10.7 0 24 0H69.5c22 0 41.5 12.8 50.6 32h411c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3H170.7l5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5H488c13.3 0 24 10.7 24 24s-10.7 24-24 24H199.7c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5H24C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"/></svg>
+<br>
+                          View Product
+                        </h4>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="Previous-Page" style="display: none; position: relative; top: 60px;">
+         <div id="UnPaidRec" class="bg-danger rounded text-white text-center"> 0 </div>
+          <div id="PaidRec" class="bg-success rounded text-white text-center"> 0 </div>
+          
+ <style type="text/css">
+ 
+ #PaidRec,
+ #UnPaidRec{
+    position: absolute;
+	top:0%;
+	right:2.5%;
+	width:45%; 
+	height: 50px;
+	font-size:25px;
+	line-height:50px;
+ }
+ 
+ #PaidRec {
+   left:2.5%; 
+ }
+ 
+ </style>         
+          
+          <div class="container">
+            <div class="col-12" style="margin-top: 50px;" >
+              <div class="card">
+                <div class="card-header d-block">
+                  <h5 class="title">Previous Record</h5>
+                </div>
+
+                <div class="card-body">
+                  <div class="accordion accordion-danger-solid" id="PList">
+     
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="Prize-Page" style="display: none; position: relative; top: 60px;">
+
+          <div class="container">
+
+            <div class="serach-area">
+              <div class="list item-list recent-jobs-list">
+                <ul id="ProductSection" >
+   
+                </ul>
+              </div>
+
+              <!-- Job List -->
+            </div>
+          </div>
+        </div>
+
+        
+      </div>
+
+      <!-- Page Content End-->
+
+      <!-- Menubar -->
+
+      <div class="menubar-area">
+        <div class="toolbar-inner menubar-nav">
+          <a href="#" class="nav-link active" id="HomePageBtn">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M9.14373 20.7821V17.7152C9.14372 16.9381 9.77567 16.3067 10.5584 16.3018H13.4326C14.2189 16.3018 14.8563 16.9346 14.8563 17.7152V20.7732C14.8562 21.4473 15.404 21.9951 16.0829 22H18.0438C18.9596 22.0023 19.8388 21.6428 20.4872 21.0007C21.1356 20.3586 21.5 19.4868 21.5 18.5775V9.86585C21.5 9.13139 21.1721 8.43471 20.6046 7.9635L13.943 2.67427C12.7785 1.74912 11.1154 1.77901 9.98539 2.74538L3.46701 7.9635C2.87274 8.42082 2.51755 9.11956 2.5 9.86585V18.5686C2.5 20.4637 4.04738 22 5.95617 22H7.87229C8.19917 22.0023 8.51349 21.8751 8.74547 21.6464C8.97746 21.4178 9.10793 21.1067 9.10792 20.7821H9.14373Z"
+                fill="#130F26"
+              />
+            </svg>
+          </a>
+
+
+<a href="#" class="nav-link" id="BottomDailyEntryBtn">
+<svg xmlns="http://www.w3.org/2000/svg" height="22" width="22" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path fill="#a19fa8" d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160V416c0 53 43 96 96 96H352c53 0 96-43 96-96V320c0-17.7-14.3-32-32-32s-32 14.3-32 32v96c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V160c0-17.7 14.3-32 32-32h96c17.7 0 32-14.3 32-32s-14.3-32-32-32H96z"/></svg>
+</a>
+
+<a href="#" class="nav-link" id="BottomProductBtn">
+<svg xmlns="http://www.w3.org/2000/svg" height="22" width="22" viewBox="0 0 576 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path fill="#a19fa8" d="M0 24C0 10.7 10.7 0 24 0H69.5c22 0 41.5 12.8 50.6 32h411c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3H170.7l5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5H488c13.3 0 24 10.7 24 24s-10.7 24-24 24H199.7c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5H24C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"/></svg>
+</a>
+
+          <a href="javascript:void(0);" class="menu-toggler">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                opacity="0.4"
+                d="M16.0755 2H19.4615C20.8637 2 22 3.14585 22 4.55996V7.97452C22 9.38864 20.8637 10.5345 19.4615 10.5345H16.0755C14.6732 10.5345 13.537 9.38864 13.537 7.97452V4.55996C13.537 3.14585 14.6732 2 16.0755 2Z"
+                fill="#a19fa8"
+              />
+
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M4.53852 2H7.92449C9.32676 2 10.463 3.14585 10.463 4.55996V7.97452C10.463 9.38864 9.32676 10.5345 7.92449 10.5345H4.53852C3.13626 10.5345 2 9.38864 2 7.97452V4.55996C2 3.14585 3.13626 2 4.53852 2ZM4.53852 13.4655H7.92449C9.32676 13.4655 10.463 14.6114 10.463 16.0255V19.44C10.463 20.8532 9.32676 22 7.92449 22H4.53852C3.13626 22 2 20.8532 2 19.44V16.0255C2 14.6114 3.13626 13.4655 4.53852 13.4655ZM19.4615 13.4655H16.0755C14.6732 13.4655 13.537 14.6114 13.537 16.0255V19.44C13.537 20.8532 14.6732 22 16.0755 22H19.4615C20.8637 22 22 20.8532 22 19.44V16.0255C22 14.6114 20.8637 13.4655 19.4615 13.4655Z"
+                fill="#a19fa8"
+              />
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Menubar -->
+    </div>
+
+    <script src="../index.js" defer></script>
+
+    <script src="../assets/js/jquery.js"></script>
+
+    <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <script src="../assets/js/settings.js"></script>
+
+    <script src="../assets/js/custom.js"></script>
+
+    <!-- Swiper -->
+
+    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
+import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js";
+import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-database.js";
+
+const firebaseConfig = {
+apiKey: "AIzaSyAbG3_c1cSimLBJDXIpUbeEO5dlkE4gYtA",
+authDomain: "hisab-kitab-59285.firebaseapp.com",
+projectId: "hisab-kitab-59285",
+storageBucket: "hisab-kitab-59285.appspot.com",
+messagingSenderId: "468481811490",
+appId: "1:468481811490:web:a9f7298401d0d65f9c567b",
+measurementId: "G-6KLG5W02T7"
+};
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const database = getDatabase();
+
+const username = document.getElementById("username");
+const logOutBtn = document.getElementById("LogOutBtn");
+const submitButton = document.getElementById("LogInBtn");
+const pList = document.getElementById("PList");
+const mainPage = document.getElementById("Main-Page");
+const loginPage = document.getElementById("Login-Page");
+// ... (previous code)
+
+submitButton.addEventListener("click", async function (e) {
+  e.preventDefault();
+
+  let inputMobileNumber = document.getElementById("mobileNumber").value + "@gmail.com";
+  const password = document.getElementById("Password").value;
+
+  try {
+    const userCredential = await signInWithEmailAndPassword(auth, inputMobileNumber, password);
+    const user = userCredential.user;
+    inputMobileNumber = inputMobileNumber.replace("@gmail.com", "");
+    localStorage.setItem("MobileNumber", inputMobileNumber);
+ 
+    console.log("Success! Welcome back!");
+    alert("Login Successfully ! Welcome back!");
+
+    location.reload();
+
+  } catch (error) {
+    alert(error.message);
+    console.error(error);
+  }
+});
+
+// ... (remaining code)
+
+auth.onAuthStateChanged((user) => {
+  if (user) {
+    mainPage.style.display = "block";
+    loginPage.style.display = "none";
+  } else {
+    mainPage.style.display = "none";
+    loginPage.style.display = "block";
+  }
+});
+
+logOutBtn.addEventListener("click", () => {
+  signOut(auth)
+    .then(() => {
+      mainPage.style.display = "none";
+      loginPage.style.display = "block";
+      localStorage.clear();
+    })
+    .catch((error) => {
+      console.error("Error during logout:", error);
+    });
+});
+
+
+let ListNum = 1;
+
+let ProductSection = document.getElementById("ProductSection")
+
+const mobileNumber = localStorage.getItem("MobileNumber");
+const userRef = ref(database, mobileNumber);
+const productRef = ref(database, "Product");
+
+onValue(ref(database, "Product"), (snapshot) => {
+  snapshot.forEach((childSnapshot) => {
+let data = childSnapshot.val();
+    ProductSection.innerHTML += `
+      <li>
+        <div class="item-content">
+          <a href="#" class="item-media"><img src="../assets/images/shop.png" alt="logo" width="55" /></a>
+
+          <div class="item-inner">
+            <div class="item-title-row">
+              <h6 class="item-title"><a href="#">Name:- ${data.Name}</a></h6>
+            </div>
+
+            <div class="item-price">Price:- ${data.Price}</div>
+          </div>
+
+        </div>
+      </li>`;
+  });
+});
+
+
+onValue(userRef, (snapshot) => {
+    snapshot.forEach((childSnapshot) => {
+        const data = childSnapshot.val();
+        let UserName = data.UserName;
+        if (UserName) {
+            username.innerHTML = UserName;
+        }
+    });
+});
+
+onValue(ref(database, `${localStorage.getItem("MobileNumber")}`), (snapshot) => {
+    snapshot.forEach((childSnapshot) => {
+        const childData = childSnapshot.val();
+        const { Product, Amount, Weight, Total, Status, time } = childData;
+if(Product){
+
+
+let RecEl = `
+	<div class="accordion-item" id="hide">
+	<div class="accordion-header collapsed bg-warning" id="accord-2${ListNum}One" data-bs-toggle="collapse" data-bs-target="#collapse2${ListNum}One" aria-controls="collapse2${ListNum}One" aria-expanded="false" role="button">
+	<span class="accordion-header-text text-white">Date:- ${time} - ${Status}</span>
+	<span class="text-white" style="position: absolute; right: 15px;">
+	</span>
+	</div>
+	
+	<div id="collapse2${ListNum}One" class="accordion__body collapse" aria-labelledby="accord-2${ListNum}One" data-bs-parent="#accordion-two" style="">
+	<div class="accordion-body-text">
+<table class="table rounded" id="usertable">
+<thead>
+<tr>
+<th scope="col">Name</th>
+<th scope="col">Price</th>
+<th scope="col">Weight</th>
+<th scope="col">Total</th>
+</tr>
+</thead>
+${Product}
+<tfoot>
+<tr>
+<td>Total:-</td>
+<td><b id="${Status}">${Total}</b></td>
+</tr>
+<tr>
+<td>Payment:-</td>
+<td><b>${Status}</b></td>
+<td>
+</td>
+</tr>
+</tfoot>
+</table>
+	</div>
+	</div>
+	</div>`;
+
+        PList.innerHTML += RecEl;
+
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(RecEl, 'text/html');
+
+        const PAIDElement = doc.getElementById('PAID');
+        const PaidRec = document.getElementById('PaidRec');
+        if (PAIDElement && PaidRec) {
+            PaidRec.innerHTML = parseFloat(PAIDElement.textContent);
+        }
+
+        const UNPAIDElement = doc.getElementById('UNPAID');
+        const UnPaidRec = document.getElementById('UnPaidRec');
+        if (UNPAIDElement && UnPaidRec) {
+            UnPaidRec.innerHTML = parseFloat(UNPAIDElement.textContent);
+        }
+}
+        if (Status === 'PAID') {
+            let Accordination = document.querySelectorAll(".accordion-header");
+            Accordination.forEach(item => {
+                item.classList.toggle("bg-success");
+                item.classList.remove("bg-danger");
+            });
+        }
+        ListNum++;
+    });
+
+});
+
+
+</script>
+
+    <script type="text/javascript">
+      // Define page elements
+      const mainPage = document.querySelector("#Main-Page")
+      const homePage = document.querySelector("#Home-Page");
+
+      const previousPage = document.querySelector("#Previous-Page");
+
+      const prizePage = document.querySelector("#Prize-Page");
+
+      const loginPage = document.querySelector("#Login-Page");
+      const headerName = document.getElementById("HeaderName");
+
+      // Function to hide all pages
+
+      function hideAllPages() {
+        const allPages = [homePage, previousPage, prizePage];
+
+        allPages.forEach((page) => {
+          page.style.display = "none";
+        });
+      }
+
+
+      HomePageBtn.addEventListener("click", function () {
+        hideAllPages();
+
+        headerName.innerHTML = "Home Page";
+
+        homePage.style.display = "block";
+
+        setActiveClass(HomePageBtn);
+      });
+      
+      SideHome.addEventListener("click", function () {
+        hideAllPages();
+      
+        headerName.innerHTML = "Home Page";
+      
+        homePage.style.display = "block";
+      
+        setActiveClass(HomePageBtn);
+      });
+
+      // Event listener for DailyEntryBtn
+
+      PreviousEntryBtn.addEventListener("click", function () {
+        hideAllPages();
+
+        headerName.innerHTML = "Previous Record";
+
+        previousPage.style.display = "block";
+      });
+      
+      SidePrevious.addEventListener("click", function () {
+        hideAllPages();
+      
+        headerName.innerHTML = "Previous Record";
+      
+        previousPage.style.display = "block";
+      });
+
+      ManageProduct.addEventListener("click", function () {
+        hideAllPages();
+
+        headerName.innerHTML = "Product Page";
+
+        prizePage.style.display = "block";
+      });
+
+      // Event listener for BottomDailyEntryBtn
+
+      BottomDailyEntryBtn.addEventListener("click", function () {
+        hideAllPages();
+
+        headerName.innerHTML = "Entry Page";
+
+        previousPage.style.display = "block";
+
+        setActiveClass(BottomDailyEntryBtn);
+      });
+
+      BottomProductBtn.addEventListener("click", function () {
+        hideAllPages();
+
+        headerName.innerHTML = "Product Page";
+
+        prizePage.style.display = "block";
+
+        setActiveClass(BottomProductBtn);
+      });
+
+      // Function to set active class on clicked button
+
+      function setActiveClass(clickedButton) {
+        const allButtons = [HomePageBtn, BottomDailyEntryBtn, BottomProductBtn];
+
+        allButtons.forEach((button) => {
+          button.classList.remove("active");
+        });
+
+        clickedButton.classList.add("active");
+      }
+
+      // Repeat the structur
+    </script>
+  </body>
+</html>
