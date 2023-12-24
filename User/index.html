@@ -436,7 +436,8 @@ var day = currentDate.getDate();
     <script src="../assets/js/custom.js"></script>
 
     <!-- Swiper -->
-
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js" defer></script>
+    
     <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
 <script type="module">
 
@@ -558,6 +559,7 @@ onValue(ref(database, `${localStorage.getItem("MobileNumber")}`), (snapshot) => 
         const childData = childSnapshot.val();
         const { Product, Amount, Weight, Total, Status, time } = childData;
 if(Product){
+// Assuming PList is a reference to some element
 
 
 let RecEl = `
@@ -585,7 +587,7 @@ let RecEl = `
               <td>Total:-</td>
               <td><b id="${Status}">${Total}</b></td>
               <td>
-                <a href="upi://pay?pa=9817721189@axl&pn=Pankaj&am=${Total}&tn=Panding Payment Name&cu=INR" class="btn btn-sm btn-success">Pay ${Total}</button>
+                <a href="upi://pay?pa=9817721189@axl&pn=Pankaj&am=${Total}&tn=Panding Payment Name&cu=INR" class="btn btn-sm btn-success">Pay ${Total}</a>
                 <button id="downloadBtn_${ListNum}">Download PNG</button>
               </td>
             </tr>
@@ -601,20 +603,24 @@ let RecEl = `
   </div>
 `;
 
-function convertToPNG(listNum) {
-  html2canvas(document.getElementById(`htmlContent_${listNum}`)).then(canvas => {
+function convertToPNG(ListNum) {
+  html2canvas(document.getElementById(`htmlContent_${ListNum}`)).then(canvas => {
     const imgData = canvas.toDataURL('image/png');
     const link = document.createElement('a');
     link.href = imgData;
-    link.download = `output_${listNum}.png`;
+    link.download = `output_${ListNum}.png`;
     link.click();
   });
 }
 
 // Attach the function to the button click event for each RecEl
-document.getElementById(`downloadBtn_${ListNum}`).addEventListener('click', () => convertToPNG(ListNum));
+PList.insertAdjacentHTML('beforeend', RecEl);
 
-PList.innerHTML += RecEl;
+const downloadBtn = document.getElementById(`downloadBtn_${ListNum}`);
+if (downloadBtn) {
+  downloadBtn.addEventListener('click', () => convertToPNG(ListNum));
+}
+
 
         const parser = new DOMParser();
         const doc = parser.parseFromString(RecEl, 'text/html');
