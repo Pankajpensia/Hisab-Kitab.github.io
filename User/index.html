@@ -586,6 +586,7 @@ ${Product}
 <td><b id="${Status}">${Total}</b></td>
 <td>
 <a href="upi://pay?pa=9817721189@axl&pn=Pankaj&am=${Total}&tn=Panding Payment Name&cu=INR" class="btn btn-sm btn-success">Pay ${Total}</button>
+  <button id="downloadBtn">Download PNG</button>
 </td>
 </tr>
 <tr>
@@ -598,7 +599,24 @@ ${Product}
 </table>
 	</div>
 	</div>
-	</div>`;
+	</div>
+ <script>
+    // Function to convert HTML to PNG and trigger download
+    function convertToPNG() {
+      html2canvas(document.getElementById('hide')).then(canvas => {
+        const imgData = canvas.toDataURL('image/png');
+        const link = document.createElement('a');
+        link.href = imgData;
+        link.download = '${Status}.png';
+        link.click();
+      });
+    }
+
+    // Attach the function to the button click event
+    document.getElementById('downloadBtn').addEventListener('click', convertToPNG);
+ </script>
+ 
+ `;
 
         PList.innerHTML += RecEl;
 
