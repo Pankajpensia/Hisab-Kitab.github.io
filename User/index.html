@@ -127,10 +127,7 @@ Password.type = "password"
               </div>
 
               <div class="right-content">
-                          <button class="btn btn-sm text-white bg-danger " onclick="location.reload()">
-                <i class="fa-solid fa-rotate-right"></i>
-                </button>
-		      <a href="javascript:void(0);" class="theme-btn active">
+                <a href="javascript:void(0);" class="theme-btn active">
                   <svg class="dark" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
                   </svg>
@@ -436,8 +433,7 @@ var day = currentDate.getDate();
     <script src="../assets/js/custom.js"></script>
 
     <!-- Swiper -->
-    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js" defer></script>
-    
+
     <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
 <script type="module">
 
@@ -559,104 +555,46 @@ onValue(ref(database, `${localStorage.getItem("MobileNumber")}`), (snapshot) => 
         const childData = childSnapshot.val();
         const { Product, Amount, Weight, Total, Status, time } = childData;
 if(Product){
-// Assuming PList is a reference to some element
 
 
-let accordionElement = document.createElement("div");
-accordionElement.className = "accordion-item";
-accordionElement.id = "hide";
+let RecEl = `
+	<div class="accordion-item" id="hide">
+	<div class="accordion-header collapsed bg-warning" id="accord-2${ListNum}One" data-bs-toggle="collapse" data-bs-target="#collapse2${ListNum}One" aria-controls="collapse2${ListNum}One" aria-expanded="false" role="button">
+	<span class="accordion-header-text text-white">Date:- ${time} - ${Status}</span>
+	<span class="text-white" style="position: absolute; right: 15px;">
+	</span>
+	</div>
+	
+	<div id="collapse2${ListNum}One" class="accordion__body collapse" aria-labelledby="accord-2${ListNum}One" data-bs-parent="#accordion-two" style="">
+	<div class="accordion-body-text">
+<table class="table rounded" id="usertable">
+<thead>
+<tr>
+<th scope="col">Name</th>
+<th scope="col">Price</th>
+<th scope="col">Weight</th>
+<th scope="col">Total</th>
+</tr>
+</thead>
+${Product}
+<tfoot>
+<tr>
+<td>Total:-</td>
+<td><b id="${Status}">${Total}</b></td>
+</tr>
+<tr>
+<td>Payment:-</td>
+<td><b>${Status}</b></td>
+<td>
+</td>
+</tr>
+</tfoot>
+</table>
+	</div>
+	</div>
+	</div>`;
 
-let accordionHeader = document.createElement("div");
-accordionHeader.className = "accordion-header collapsed bg-warning";
-accordionHeader.id = `accord-2${ListNum}One`;
-accordionHeader.setAttribute("data-bs-toggle", "collapse");
-accordionHeader.setAttribute("data-bs-target", `#collapse2${ListNum}One`);
-accordionHeader.setAttribute("aria-controls", `collapse2${ListNum}One`);
-accordionHeader.setAttribute("aria-expanded", "false");
-accordionHeader.setAttribute("role", "button");
-
-let headerText = document.createElement("span");
-headerText.className = "accordion-header-text text-white";
-headerText.textContent = `Date:- ${time} - ${Status}`;
-
-let headerSpan = document.createElement("span");
-headerSpan.className = "text-white";
-headerSpan.style.position = "absolute";
-headerSpan.style.right = "15px";
-
-let accordionBody = document.createElement("div");
-accordionBody.id = `collapse2${ListNum}One`;
-accordionBody.className = "accordion__body collapse";
-accordionBody.setAttribute("aria-labelledby", `accord-2${ListNum}One`);
-accordionBody.setAttribute("data-bs-parent", "#accordion-two");
-
-let bodyText = document.createElement("div");
-bodyText.className = "accordion-body-text";
-
-let table = document.createElement("table");
-table.className = "table rounded";
-table.id = `htmlContent_${ListNum}`;
-
-let tableHead = document.createElement("thead");
-let headRow = document.createElement("tr");
-["Name", "Price", "Weight", "Total"].forEach((header) => {
-  let th = document.createElement("th");
-  th.textContent = header;
-  headRow.appendChild(th);
-});
-tableHead.appendChild(headRow);
-
-let productRow = document.createElement("tr");
-productRow.innerHTML = Product;
-
-let tableFoot = document.createElement("tfoot");
-let totalRow = document.createElement("tr");
-["Total:-", `<b id="${Status}">${Total}</b>`, `<a href="upi://pay?pa=9817721189@axl&pn=Pankaj&am=${Total}&tn=Pending Payment Name&cu=INR" class="btn btn-sm btn-success">Pay ${Total}</a><button id="downloadBtn_${ListNum}">Download PNG</button>`].forEach((cellContent) => {
-  let td = document.createElement("td");
-  td.innerHTML = cellContent;
-  totalRow.appendChild(td);
-});
-
-let paymentRow = document.createElement("tr");
-["Payment:-", `<b>${Status}</b>`, ""].forEach((cellContent) => {
-  let td = document.createElement("td");
-  td.innerHTML = cellContent;
-  paymentRow.appendChild(td);
-});
-
-tableFoot.appendChild(totalRow);
-tableFoot.appendChild(paymentRow);
-
-table.appendChild(tableHead);
-table.appendChild(productRow);
-table.appendChild(tableFoot);
-
-bodyText.appendChild(table);
-
-accordionHeader.appendChild(headerText);
-accordionHeader.appendChild(headerSpan);
-
-accordionBody.appendChild(bodyText);
-
-accordionElement.appendChild(accordionHeader);
-accordionElement.appendChild(accordionBody);
-
-// Function to convert HTML to PNG and trigger download
-function convertToPNG() {
-  html2canvas(document.getElementById(`htmlContent_${ListNum}`)).then(canvas => {
-    const imgData = canvas.toDataURL('image/png');
-    const link = document.createElement('a');
-    link.href = imgData;
-    link.download = 'output.png';
-    link.click();
-  });
-}
-
-// Attach the function to the button click event
-document.getElementById(`downloadBtn_${ListNum}`).addEventListener('click', convertToPNG);
-// Attach the function to the button click event for each RecEl
-PList.innerHTML += accordionElement;
-
+        PList.innerHTML += RecEl;
 
         const parser = new DOMParser();
         const doc = parser.parseFromString(RecEl, 'text/html');
