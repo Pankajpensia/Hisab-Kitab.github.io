@@ -800,7 +800,7 @@
 	}
 	});
 	
-	onValue(ref(database, `${localStorage.getItem("EmployeeID")}`), (snapshot) => {
+	onValue(ref(database, `Data/Employee/${localStorage.getItem("EmployeeID")}`), (snapshot) => {
 	snapshot.forEach((childSnapshot) => {
 	const childData = childSnapshot.val();
 	localStorage.setItem("EmployeeName", childData.Name);
@@ -997,8 +997,8 @@
 	const TotalAmount = ProductAmount*ProductWeight;
 	
 	if (UserName && ProductName) {
-	const usersRef = push(ref(database, `${UserName}`));
-	set(usersRef, {
+    const usersRef = push(ref(database, `Data/${UserName}`));
+		set(usersRef, {
 Name: UserName,
 Product: table.innerHTML,
 Status: Payment,
@@ -1035,7 +1035,7 @@ let ListNum = 1
 	
 
 	console.log(UserRef)
-	onValue(ref(database, `${UserRef}`), (snapshot) => {
+	onValue(ref(database, `Data/${UserRef}`), (snapshot) => {
 	
 	snapshot.forEach((childSnapshot) => {
 	const childData = childSnapshot.val();
@@ -1124,7 +1124,7 @@ ${Product}
 	btn.addEventListener("click", (event) => {
 	const documentIdToDelete = event.target.getAttribute("data-document-id");
 	if (documentIdToDelete) {
-	const documentRefToDelete = ref(database, `${UserRef}/${documentIdToDelete}`);
+	const documentRefToDelete = ref(database, `Data/${UserRef}/${documentIdToDelete}`);
 	
 	deleteDoc(documentRefToDelete);
 	}
@@ -1164,15 +1164,15 @@ ${Product}
 	let UserList = document.getElementById("UserList");
 	
 	
-	onValue(ref(database, `${OwnerIDFromStorage}=User`), (snapshot) => {
+	onValue(ref(database, "Data/OwnerListUser"), (snapshot) => {
 	
 	snapshot.forEach((childSnapshot) => {
 	const childData = childSnapshot.val();
-	const AddNewUserName = childData.Name;
-	const AddNewUserMobile = childData.Mobile; // It seems like you're missing 'LastPrice' in your data structure
+	const AddNewUserName = childData.UserName;
+	const AddNewUserMobile = childData.UserMobile; // It seems like you're missing 'LastPrice' in your data structure
 	
 	const userId = childSnapshot.key;
-	UserDropdown.innerHTML += `<option value="${AddNewUserMobile}">${AddNewUserName}:- ${AddNewUserMobile}</option>`
+	UserDropdown.innerHTML += `<option value="User/${AddNewUserMobile}">${AddNewUserName}:- ${AddNewUserMobile}</option>`
 	UserList.innerHTML += `
 	<li>
 	<div class="item-content">
@@ -1183,7 +1183,7 @@ ${Product}
 	
 	<h6 class="item-title"><a href="#">Name:- ${AddNewUserName}</a></h6>
 	<h5 class="item-title"><a href="#">Mobile:- ${AddNewUserMobile}</a></h5>
-	<h5 class="item-title"><a class="text-success" href="#">Password:- ${childData.Password}</a></h5>
+	<h5 class="item-title"><a class="text-success" href="#">Password:- ${AddNewUserMobile}</a></h5>
 	</div>
 	
 	
@@ -1199,7 +1199,7 @@ ${Product}
 	</li>`;
 	
 	ListNum++;
-	UserNameList.innerHTML += `<option value="${childData.Mobile}"><b>${childData.Name}</b></option>`
+	UserNameList.innerHTML += `<option value="User/${childData.UserMobile}"><b>${childData.UserName}</b></option>`
 	
 	});
 	
@@ -1215,7 +1215,7 @@ ${Product}
 	
 	
 	if (Product && ProductPrice) {
-	const usersRef = push(ref(database, `${OwnerIDFromStorage}=Product`));
+	const usersRef = push(ref(database, "Product"));
 	set(usersRef, {
 	Name: Product,
 	Price: ProductPrice
@@ -1235,7 +1235,7 @@ ${Product}
 	AddNewProductListBtn.addEventListener("click", ProductsForm)
 	
 	
-	onValue(ref(database, `${OwnerIDFromStorage}=Product`), (snapshot) => {
+	onValue(ref(database, "Product"), (snapshot) => {
 	
 	snapshot.forEach((childSnapshot) => {
 	const childData = childSnapshot.val();
@@ -1276,7 +1276,7 @@ ${Product}
 	btn.addEventListener("click", (event) => {
 	const documentIdToDelete = event.target.getAttribute("data-document-id");
 	if (documentIdToDelete) {
-	const documentRefToDelete = ref(database, `${OwnerIDFromStorage}=Product/${documentIdToDelete}`);
+	const documentRefToDelete = ref(database, `Product/${documentIdToDelete}`);
 	deleteProduct(documentRefToDelete);
 	}
 	});
