@@ -1002,7 +1002,6 @@
 Name: UserName,
 Product: table.innerHTML,
 Status: Payment,
-Total: PreviousPayment,
 time: time
 	})
 	.then(() => {
@@ -1073,10 +1072,6 @@ let RecEl = `
 </thead>
 ${Product}
 <tfoot>
-<tr>
-<td>Total:-</td>
-<td><b id="${Status}">${Total}</b></td>
-</tr>
 <tr>
 <td>Payment:-</td>
 <td><b>${Status}</b></td>
