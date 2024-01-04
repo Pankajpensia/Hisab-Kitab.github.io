@@ -914,6 +914,7 @@
 	let PreviousPayment = 0;
 	let OfflinePayment = 0;
 	let ListNum= 0
+  let OnlinePayment = 0;
 	let getuserdata= document.querySelector("#getuserdata")
 	const firebaseConfig = {
 	apiKey: "AIzaSyAbG3_c1cSimLBJDXIpUbeEO5dlkE4gYtA",
@@ -988,6 +989,14 @@
 	OfflinePayment= parseInt(OfflineTotalAmount.value) + parseInt(OfflinePayment)
 	})
 	
+
+	NewProductAmount.addEventListener("input", function(){
+	
+	NewTotalAmount.value = NewProductAmount.value*NewProductWeight.value
+	OnlinePayment= parseInt(NewProductAmount.value) + parseInt(NewProductWeight.value)
+	})
+	
+
 	const dropdown = document.getElementById('paymentDropdown')
 	
 	dropdown.addEventListener("change", function(){
@@ -1125,10 +1134,6 @@ function AddOfflineTaskFunction() {
     });
 
 setInterval(renderTasks, 100)
-
-
-
-
 	
 	function submitForm(e) {
 	e.preventDefault()
@@ -1139,12 +1144,12 @@ setInterval(renderTasks, 100)
 	const TotalAmount = ProductAmount*ProductWeight;
 	
 	if (UserName && ProductName) {
-	const usersRef = push(ref(database, `${UserName}`));
+	const usersRef = push(ref(database, `Data/${UserName}`));
 	set(usersRef, {
 	Name: UserName,
 	Product: table.innerHTML,
 	Status: Payment,
-	Total: PreviousPayment,
+	Total: OnlinePayment,
 	time: time
 	})
 	.then(() => {
@@ -1176,7 +1181,7 @@ let EraseData = document.querySelector("#EraseData")
 	
 
 	console.log(UserRef)
-	onValue(ref(database, `${UserRef}`), (snapshot) => {
+	onValue(ref(database, `Data/${UserRef}`), (snapshot) => {
 	
 	snapshot.forEach((childSnapshot) => {
 	const childData = childSnapshot.val();
@@ -1261,7 +1266,7 @@ ${Product}
 	btn.addEventListener("click", (event) => {
 	const documentIdToDelete = event.target.getAttribute("data-document-id");
 	if (documentIdToDelete) {
-	const documentRefToDelete = ref(database, `${UserRef}/${documentIdToDelete}`);
+	const documentRefToDelete = ref(database, `Data/${UserRef}/${documentIdToDelete}`);
 	
 	deleteDoc(documentRefToDelete);
 	}
@@ -1306,11 +1311,13 @@ ${Product}
 	const newPassword = NewMobile;
 	
 	try {
+  let CurrentUserID
 	// Assuming you have the 'auth' and 'database' objects defined elsewhere
-	const userCredential = await createUserWithEmailAndPassword(auth, NewMobile + "@gmail.com", newPassword);
-	
-	const usersRef = push(ref(database, `${NewMobile}`));
-	set(usersRef, {
+	const userCredential = await createUserWithEmailAndPassword(auth, "User" + NewMobile + "@gmail.com", newPassword);
+  const OwnerListUser = push(ref(database, `Data/OwnerListUser/`));
+  const usersRef = push(ref(database, `Data/User/${NewMobile}`))
+	CurrentUserID = usersRef.key
+  set(usersRef, {
 	UserName: NewUser,
 	UserMobile: NewMobile,
 	UserPassword: newPassword
@@ -1320,22 +1327,26 @@ ${Product}
 	}).catch((error) => {
 	alert("User Not Added. Error: " + error);
 	});
-	
-	const userRef = push(ref(database, `${OwnerIDFromStorage}=User`));
-	set(userRef, {
-	Name: NewUser,
-	Mobile: NewMobile,
-	Password: newPassword
+
+	set(OwnerListUser, {
+  UserID: CurrentUserID,
+	UserName: NewUser,
+	UserMobile: NewMobile,
+	UserPassword: newPassword
 	}).then(() => {
 	alert("Record Added Successfully");
 	location.reload();
 	}).catch((error) => {
 	alert("User Not Added. Error: " + error);
 	});
+
 	
 	} catch (error) {
-	    if (error.code === 'auth/email-already-in-use') {
-    const usersRef = push(ref(database, `${NewMobile}`));
+    let CurrentUserID
+    const OwnerListUser = push(ref(database, `Data/OwnerListUser/`));
+  const usersRef = push(ref(database, `Data/User/${NewMobile}`))
+	CurrentUserID = usersRef.key
+    if (error.code === 'auth/email-already-in-use') {
     set(usersRef, {
     UserName: NewUser,
     UserMobile: NewMobile,
@@ -1346,19 +1357,21 @@ ${Product}
     }).catch((error) => {
     alert("User Not Added. Error: " + error);
     });
-    
-    const userRef = push(ref(database, `${OwnerIDFromStorage}=User`));
-    set(userRef, {
-    Name: NewUser,
-    Mobile: NewMobile,
-    Password: newPassword
-    }).then(() => {
-    alert("Record Added Successfully");
-    location.reload();
-    }).catch((error) => {
-    alert("User Not Added. Error: " + error);
-    });
-	}
+  
+	}else{
+  set(OwnerListUser, {
+  UserID: CurrentUserID,
+	UserName: NewUser,
+	UserMobile: NewMobile,
+	UserPassword: newPassword
+	}).then(() => {
+	alert("Record Added Successfully");
+	location.reload();
+	}).catch((error) => {
+	alert("User Not Added. Error: " + error);
+	});
+	
+  }
 	}
 	});
 	
@@ -1366,15 +1379,15 @@ ${Product}
 	let UserList = document.getElementById("UserList");
 	
 	
-	onValue(ref(database, `${OwnerIDFromStorage}=User`), (snapshot) => {
+	onValue(ref(database, `Data/OwnerListUser/`), (snapshot) => {
 	
 	snapshot.forEach((childSnapshot) => {
 	const childData = childSnapshot.val();
-	const AddNewUserName = childData.Name;
-	const AddNewUserMobile = childData.Mobile; // It seems like you're missing 'LastPrice' in your data structure
+	const AddNewUserName = childData.UserName;
+	const AddNewUserMobile = childData.UserMobile; // It seems like you're missing 'LastPrice' in your data structure
 	
 	const userId = childSnapshot.key;
-	UserDropdown.innerHTML += `<option value="${AddNewUserMobile}">${AddNewUserName}:- ${AddNewUserMobile}</option>`
+	UserDropdown.innerHTML += `<option value="User/${AddNewUserMobile}">${AddNewUserName}:- ${AddNewUserMobile}</option>`
 	UserList.innerHTML += `
 	<li>
 	<div class="item-content">
@@ -1385,13 +1398,13 @@ ${Product}
 	
 	<h6 class="item-title"><a href="#">Name:- ${AddNewUserName}</a></h6>
 	<h5 class="item-title"><a href="#">Mobile:- ${AddNewUserMobile}</a></h5>
-	<h5 class="item-title"><a class="text-success" href="#">Password:- ${childData.Password}</a></h5>
+	<h5 class="item-title"><a class="text-success" href="#">Password:- ${AddNewUserMobile}</a></h5>
 	</div>
 	
 	
 	</div>
 	<div style="position: absolute; right:20px; color:red; font-size:20px" class="mb-6">
-	<i class="fa-solid fa-trash" data-user-path="${AddNewUserMobile}" data-document-id="${userId}" id="delBtn" style="position: relative; top:40px; right: 10px;"></i>
+	<i class="fa-solid fa-trash" data-user-path="${childData.UserMobile}" data-document-id="${userId}" id="delBtn" style="position: relative; top:40px; right: 10px;"></i>
 	</div>
 	</div>
 	</div>
@@ -1401,7 +1414,7 @@ ${Product}
 	</li>`;
 	
 	ListNum++;
-	UserNameList.innerHTML += `<option value="${childData.Mobile}"><b>${childData.Name}</b></option>`
+	UserNameList.innerHTML += `<option value="User/${childData.UserMobile}"><b>${childData.UserName}</b></option>`
 	
 	});
 	
@@ -1413,8 +1426,8 @@ ${Product}
 	const documentIdToDelete = event.target.getAttribute("data-document-id");
     const documentPathToDelete = event.target.getAttribute("data-user-path");
 	if (documentIdToDelete) {
-	const documentRefToDelete = ref(database, `${OwnerIDFromStorage}=User/${documentIdToDelete}`);
-	const documentPathRefToDelete = ref(database, `${documentPathToDelete}`);	
+	const documentRefToDelete = ref(database, `Data/OwnerListUser/${documentIdToDelete}`);
+	const documentPathRefToDelete = ref(database, `Data/User/${documentPathToDelete}`);	
 	deleteUserFromDB(documentRefToDelete);
 	deleteUserFromOwner(documentPathRefToDelete);
 	}
@@ -1454,10 +1467,13 @@ ${Product}
 	const EmployeeMobile = document.getElementById('EmployeesMobile').value;
 	
 	try {
-	
+	let EmployeeID
 	const userCredential = await createUserWithEmailAndPassword(auth, EmployeeMobile +"_"+ OwnerIDFromStorage + "@gmail.com", EmployeeMobile);
-	
-	const EmployeeRef = push(ref(database, `${EmployeeMobile}`));
+    
+  const OwnerListEmployee = push(ref(database, `Data/OwnerListEmployee/`));
+  const EmployeeRef = push(ref(database, `Data/Employee/${NewMobile}`))
+	EmployeeID = EmployeeRef.key
+  // const EmployeeRef = push(ref(database, `${EmployeeMobile}`));
 	set(EmployeeRef, {
 	Name: EmployeeName,
 	Mobile: EmployeeMobile,
@@ -1469,8 +1485,8 @@ ${Product}
 	alert("User Not Added. Error: " + error);
 	});
 	
-	const EmployeesRef = push(ref(database, `${OwnerIDFromStorage}=Employee`));
-	set(EmployeesRef, {
+	set(OwnerListEmployee, {
+  EmployeeID: EmployeeID,
 	Name: EmployeeName,
 	Mobile: EmployeeMobile,
 	Password: EmployeeMobile
@@ -1482,8 +1498,13 @@ ${Product}
 	});
 	
 	} catch (error) {
+
+    
+  const OwnerListEmployee = push(ref(database, `Data/OwnerListEmployee/`));
+  const EmployeeRef = push(ref(database, `Data/Employee/${EmployeeMobile}`))
+	let EmployeeID = EmployeeRef.key
+
      if (error.code === 'auth/email-already-in-use') {
-const EmployeeRef = push(ref(database, `${EmployeeMobile}`));
 set(EmployeeRef, {
 Name: EmployeeName,
 Mobile: EmployeeMobile,
@@ -1495,8 +1516,8 @@ location.reload();
 alert("User Not Added. Error: " + error);
 });
 
-const EmployeesRef = push(ref(database, `${OwnerIDFromStorage}=Employee`));
-set(EmployeesRef, {
+set(OwnerListEmployee, {
+EmployeeID: EmployeeRef.key,
 Name: EmployeeName,
 Mobile: EmployeeMobile,
 Password: EmployeeMobile
@@ -1506,12 +1527,13 @@ location.reload();
 }).catch((error) => {
 alert("User Not Added. Error: " + error);
 });
-      }
+   
+}
 	}
 	});
 		
 	
-	onValue(ref(database, `${OwnerIDFromStorage}=Employee`), (snapshot) => {
+	onValue(ref(database, `Data/OwnerListEmployee/`), (snapshot) => {
 	
 	snapshot.forEach((childSnapshot) => {
 	const childData = childSnapshot.val();
@@ -1553,9 +1575,9 @@ alert("User Not Added. Error: " + error);
 	const documentIdToDelete = event.target.getAttribute("data-document-id");
 	const documentPathToDelete = event.target.getAttribute("data-employee-path");	
 	if (documentIdToDelete) {
-	const documentRefToDelete = ref(database, `${OwnerIDFromStorage}=Employee/${documentIdToDelete}`);
-	const documentPathRefToDelete = ref(database, `${documentPathToDelete}`);
-	deleteEmployee(documentRefToDelete);
+    const documentRefToDelete = ref(database, `Data/OwnerListEmployee/${documentIdToDelete}`);
+	  const documentPathRefToDelete = ref(database, `Data/Employee/${documentPathToDelete}`);	
+		deleteEmployee(documentRefToDelete);
 	deleteEmployeeFromOwner(documentPathRefToDelete);
 	}
 	});
