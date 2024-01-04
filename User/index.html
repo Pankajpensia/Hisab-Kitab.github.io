@@ -559,7 +559,7 @@ onValue(userRef, (snapshot) => {
 onValue(ref(database, `Data/User/${localStorage.getItem("MobileNumber")}`), (snapshot) => {
     snapshot.forEach((childSnapshot) => {
         const childData = childSnapshot.val();
-        const { Product, Amount, Weight, Total, Status, time } = childData;
+        const { Product, Amount, Weight, Status, time } = childData;
 if(Product){
 
 
@@ -584,10 +584,7 @@ let RecEl = `
 </thead>
 ${Product}
 <tfoot>
-<tr>
-<td>Total:-</td>
-<td><b id="${Status}">${Total}</b></td>
-</tr>
+
 <tr>
 <td>Payment:-</td>
 <td><b>${Status}</b></td>
