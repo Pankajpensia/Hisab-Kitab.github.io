@@ -63,28 +63,6 @@
 <div class="input-group">
 <input type="tel" placeholder="User Name" id="mobileNumber"   class="form-control">
 </div>
-<div class="input-group">
-<input type="text" placeholder="Password" id="Password" class="form-control be-0">
-<span class="input-group-text show-pass"> 
-<i class="fa fa-eye-slash" id="hide" ></i>
-<i class="fa fa-eye" id="show" ></i>
-<script type="text/javascript">
-
-let Password = document.getElementById("Password")
-
-hide.addEventListener("click", function(){
-Password.type = "text"
-})
-
-show.addEventListener("click", function(){
-Password.type = "password"
-})
-
-Password.type = "password"
-
-</script>
-</span>
-</div>
 
 <div class="input-group">
 <a href="#" id="LogInBtn"  class="btn mt-2 btn-primary w-100 btn-rounded">Login</a>
@@ -465,15 +443,23 @@ const loginPage = document.getElementById("Login-Page");
 submitButton.addEventListener("click", async function (e) {
   e.preventDefault();
 
-  let inputMobileNumber = document.getElementById("mobileNumber").value + "@gmail.com";
-  const password = document.getElementById("Password").value;
+  let inputMobileNumber = document.getElementById("mobileNumber").value;
+  // const password = document.getElementById("Password").value;
 
   try {
-    const userCredential = await signInWithEmailAndPassword(auth, inputMobileNumber, password);
-    const user = userCredential.user;
-    inputMobileNumber = inputMobileNumber.replace("@gmail.com", "");
     localStorage.setItem("MobileNumber", inputMobileNumber);
- 
+    onValue(ref(database, `Data/User/${localStorage.getItem("MobileNumber")}`), (snapshot) => {
+	snapshot.forEach((childSnapshot) => {
+	const childData = childSnapshot.val();
+	localStorage.setItem("Name", childData.UserName);
+	localStorage.setItem("Mobile", childData.UserMobile)
+	});
+	location.reload()
+	});
+
+    const userCredential = await signInWithEmailAndPassword(auth, "User"+inputMobileNumber + "@gmail.com", inputMobileNumber);
+    const user = userCredential.user;
+
     console.log("Success! Welcome back!");
     alert("Login Successfully ! Welcome back!");
 
@@ -490,6 +476,7 @@ submitButton.addEventListener("click", async function (e) {
 auth.onAuthStateChanged((user) => {
   if (user) {
     mainPage.style.display = "block";
+    username.innerHTML = localStorage.getItem("Name")
     loginPage.style.display = "none";
   } else {
     mainPage.style.display = "none";
@@ -550,7 +537,7 @@ onValue(userRef, (snapshot) => {
     });
 });
 
-onValue(ref(database, `${localStorage.getItem("MobileNumber")}`), (snapshot) => {
+onValue(ref(database, `Data/User/${localStorage.getItem("MobileNumber")}`), (snapshot) => {
     snapshot.forEach((childSnapshot) => {
         const childData = childSnapshot.val();
         const { Product, Amount, Weight, Total, Status, time } = childData;
