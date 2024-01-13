@@ -5386,6 +5386,26 @@ onValue(ref(database, `Owner/${Day.getMonth() + 1}-${Day.getDay()}_To_${Day.getM
     Total.innerHTML = TotalAmount; // Update Total inside the callback
 });
 
+onValue(ref(database, "Data/OwnerListUser"), (snapshot) => {
+    snapshot.forEach((childSnapshot) => {
+        let length = 0;
+    snapshot.forEach(() => {
+        length++;
+    });
+    console.log(`Number of children: ${length}`);
+    });
+});
+
+onValue(ref(database, "Data/OwnerListEmployee"), (snapshot) => {
+    snapshot.forEach((childSnapshot) => {
+        let length = 0;
+    snapshot.forEach(() => {
+        length++;
+    });
+    console.log(`Number of children: ${length}`);
+    });
+});
+
         </script>
 
     <script type="module" src="/_nuxt/entry.ab3e2748.js" crossorigin></script>
