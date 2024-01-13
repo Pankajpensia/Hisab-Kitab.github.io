@@ -5361,32 +5361,30 @@
 	LoginPage.style.display = "block";
 	}
 	});
+   let Day = new Date();
+let TotalAmount = 5;
 
-    let Day = new Date();
-    let TotalAmount = 5;
+onValue(ref(database, `Owner/${Day.getMonth() + 1}-${Day.getDay()}_To_${Day.getMonth() + 1}-${Day.getDay() + 1}/PAID`), (snapshot) => {
+    snapshot.forEach((childSnapshot) => {
+        let PaymentData = childSnapshot.val();
+        console.log(PaymentData.PAID)
+        Paid.innerHTML = PaymentData.PAID;
+        TotalAmount += parseInt(PaymentData.PAID);
+    });
 
-    onValue(ref(database, `Owner/${Day.getMonth()+1}-${Day.getDay()}_To_${Day.getMonth()+1}-${Day.getDay() + 1}/PAID`), (snapshot) => {
-	snapshot.forEach((childSnapshot) => {
-       let PaymentData = childSnapshot.val();
-       console.log(PaymentData.PAID)
-       Paid.innerHTML = PaymentData.PAID;
-       TotalAmount + parseInt(PaymentData.PAID);
-	});
-
+    Total.innerHTML = TotalAmount; // Update Total inside the callback
 });
-    onValue(ref(database, `Owner/${Day.getMonth()+1}-${Day.getDay()}_To_${Day.getMonth()+1}-${Day.getDay() + 1}/UNPAID`), (snapshot) => {
-	snapshot.forEach((childSnapshot) => {
-       let PaymentData = childSnapshot.val();
-       console.log(PaymentData.UNPAID)
-       Unpaid.innerHTML = PaymentData.UNPAID;
-       TotalAmount + parseInt(PaymentData.UNPAID);
 
-	});
+onValue(ref(database, `Owner/${Day.getMonth() + 1}-${Day.getDay()}_To_${Day.getMonth() + 1}-${Day.getDay() + 1}/UNPAID`), (snapshot) => {
+    snapshot.forEach((childSnapshot) => {
+        let PaymentData = childSnapshot.val();
+        console.log(PaymentData.UNPAID)
+        Unpaid.innerHTML = PaymentData.UNPAID;
+        TotalAmount += parseInt(PaymentData.UNPAID);
+    });
 
-	});
-
-    Total.innerHTML = TotalAmount
-
+    Total.innerHTML = TotalAmount; // Update Total inside the callback
+});
 
         </script>
 
