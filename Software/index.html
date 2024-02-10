@@ -45,55 +45,58 @@
     <div class="page-wraper" id="Login-Page" style="display:none;" > 
    
     
-    <!-- Page Content -->
-    <div class="page-content">
-    
-    <!-- Banner -->
-    <div class="banner-wrapper shape-1">
-    <div class="container inner-wrapper">
-    <h2 class="dz-title">Owner Login</h2>
-    </div>
-    </div>
-    <!-- Banner End -->
-    
-    <div class="container">
-    <div class="account-area">
-    <form class="">
-    <div class="input-group">
-    <input type="tel" placeholder="User Name" id="mobileNumber"  class="form-control">
-    </div>
-    <div class="input-group">
-    <input type="password" placeholder="Password" id="password" class="form-control be-0">
-    <span class="input-group-text show-pass"> 
-    <i class="fa fa-eye-slash" id="hide" ></i>
-    <i class="fa fa-eye" id="show" ></i>
-    <script type="text/javascript">
-    
-    let Password = document.getElementById("password")
-    
-    hide.addEventListener("click", function(){
-    Password.type = "text"
-    })
-    
-    show.addEventListener("click", function(){
-    Password.type = "password"
-    })
-    
-    Password.type = "password"
-    
-    </script>
-    </span>
-    </div>
-
-    <div class="input-group">
-    <a href="#" id="LogInBtn"  class="btn mt-2 btn-primary w-100 btn-rounded">Login</a>
-    </div>
-    </form>
-    </div>
-    </div>
-    </div>
-
-    </div>
+      <!-- Page Content -->
+      <div class="page-content">
+      
+      <!-- Banner -->
+      <div class="banner-wrapper shape-1">
+      <div class="container inner-wrapper">
+      <h2 class="dz-title">Dashboard Login</h2>
+      </div>
+      </div>
+      <!-- Banner End -->
+      
+      <div class="container">
+      <div class="account-area">
+      <form class="">
+        <div class="input-group">
+          <input type="tel" placeholder="Shop ID" id="ShopID"  class="form-control">
+          </div>
+      <div class="input-group">
+      <input type="tel" placeholder="Owner Mobile" id="mobileNumber"  class="form-control">
+      </div>
+      <div class="input-group">
+      <input type="password" placeholder="Password" id="password" class="form-control be-0">
+      <span class="input-group-text show-pass"> 
+      <i class="fa fa-eye-slash" id="hide" ></i>
+      <i class="fa fa-eye" id="show" ></i>
+      <script type="text/javascript">
+      
+      let Password = document.getElementById("password")
+      
+      hide.addEventListener("click", function(){
+      Password.type = "text"
+      })
+      
+      show.addEventListener("click", function(){
+      Password.type = "password"
+      })
+      
+      Password.type = "password"
+      
+      </script>
+      </span>
+      </div>
+  
+      <div class="input-group">
+      <a href="#" id="LogInBtn"  class="btn mt-2 btn-primary w-100 btn-rounded">Login</a>
+      </div>
+      </form>
+      </div>
+      </div>
+      </div>
+  
+      </div>
     
     <div class="page-wraper" id="Main-Page"  style="display: block;">
       <!-- Header -->
@@ -661,7 +664,7 @@
 
             <div class="serach-area">
               <div class="list item-list recent-jobs-list">
-                <ul id="UserList" >
+                <ul id="UserList"  style="display: flex; flex-wrap: wrap;">
     
                 </ul>
               </div>
@@ -734,7 +737,7 @@
 
             <div class="serach-area">
               <div class="list item-list recent-jobs-list">
-                <ul id="EmployeesList" >
+                <ul id="EmployeesList" style="display: flex; flex-wrap: wrap;">
   
                 </ul>
               </div>
@@ -788,10 +791,12 @@
                 <div class="card-header d-block">
                   <h5 class="title">Previous Record</h5>
                 </div>
-<select id="UserDropdown" class="form-control rounded my-2" >
+  <div style="display: flex;">
+<select id="UserDropdown" class="form-control rounded my-2 mx-4" style="width: 45%;">
 <option value="none">Select User</option>
 </select>
-<button id="getuserdata"  class="btn btn-secondary my-2" >Get Data</button>
+<button id="getuserdata"  class="btn btn-secondary my-2 mx-4" >Get Data</button>
+</div>
                 <div class="card-body">
                   <div class="accordion accordion-danger-solid" id="PList" style="display: flex; flex-wrap: wrap;"   >
     
@@ -864,7 +869,7 @@
 
             <div class="serach-area">
               <div class="list item-list recent-jobs-list">
-                <ul id="NewProductsList" >
+                <ul id="NewProductsList" style="display: flex; flex-wrap: wrap;" >
          
                 </ul>
               </div>
@@ -886,885 +891,881 @@
     </div>
     <script type="module" defer>
 	
-	let username = document.getElementById("username");
-	let LogOutBtn = document.querySelector("#LogOutBtn");
-	let submitButton = document.querySelector("#LogInBtn");
-	let UserNameList = document.getElementById("userlist")
-	let NewUserName = document.getElementById("NewUserName")
-	let NewProductName = document.getElementById("NewProductName")
-	let NewProductAmount = document.getElementById("NewProductAmount")
-	let NewProductWeight = document.getElementById("NewProductWeight")
-	let NewTotalAmount = document.getElementById("NewTotalAmount")
-	let OfflineProductAmount = document.getElementById("OfflineProductAmount")
-	let OfflineProductWeight = document.getElementById("OfflineProductWeight")
-	let OfflineTotalAmount = document.getElementById("OfflineTotalAmount")
-	let NewProductAddBtn = document.querySelector("#NewProductAddBtn")
-	let EmployeesName = document.getElementById("EmployeesName")
-	let EmployeesMobile = document.getElementById("EmployeesMobile")
-	let EmployeesList = document.getElementById("EmployeesList")
-	let AddNewEmployeesBtn = document.querySelector("#AddNewEmployeesBtn")
-	let ProductListName = document.getElementById("ProductListName")
-	let ProductListPrice = document.getElementById("ProductListPrice")
-	let AddNewProductListBtn = document.getElementById("AddNewProductList")
-	let NewProductsList = document.getElementById("NewProductsList")
-	let OwnerIDFromStorage = localStorage.getItem("Mobile")
-	
-	const currentDate = new Date();
-	
-	const day = currentDate.getDate();
-	
-	const month = currentDate.getMonth() + 1; // Adding 1 to get the correct month number
-	
-	const year = currentDate.getFullYear();
-	
-	let time = day + "/" + month + "/" + year
-	
-	var table = document.getElementById("todo");
-	var Offlinetable = document.getElementById("Offlinetodo");
-	import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
-	import { getAuth, signInWithEmailAndPassword , createUserWithEmailAndPassword, deleteUser} from "https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js";
-	import { getDatabase, ref, push, set, onValue, remove } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-database.js";
-	let UserDropdown = document.getElementById("UserDropdown")
-	let Payment
-	let UserRef
-	let PreviousPayment = 0;
-	let OfflinePayment = 0;
-	let ListNum= 0
-  let OnlinePayment = 0;
-	let getuserdata= document.querySelector("#getuserdata")
-	const firebaseConfig = {
-	apiKey: "AIzaSyAbG3_c1cSimLBJDXIpUbeEO5dlkE4gYtA",
-	authDomain: "hisab-kitab-59285.firebaseapp.com",
-	projectId: "hisab-kitab-59285",
-	storageBucket: "hisab-kitab-59285.appspot.com",
-	messagingSenderId: "468481811490",
-	appId: "1:468481811490:web:a9f7298401d0d65f9c567b",
-	measurementId: "G-6KLG5W02T7"
-	};
-	
-	const app = initializeApp(firebaseConfig);
-	const auth = getAuth(app);
-	const database = getDatabase();
-	
-	submitButton.addEventListener("click", async function (e) {
-	e.preventDefault();
-	const mobileNumber = document.getElementById("mobileNumber").value + "@gmail.com";
-	const password = document.getElementById("password").value;
-	
-	try {
-	const userCredential = await signInWithEmailAndPassword(auth, mobileNumber, password);
-	const user = userCredential.user;
-	console.log("Success! Welcome back!");
-	alert("Login Successfully ! Welcome back!");
-
-	
-	} catch (error) {
-    if(error.code == "auth/invalid-login-credentials"){
-      alert("Please Check Your Password")
-    }
-	console.log(error);
-	}
-	});
-
-  onValue(ref(database, "Owner/"), (snapshot) => {
-	snapshot.forEach((childSnapshot) => {
-	const childData = childSnapshot.val();
-     const FirstName = childData.FirstName;
-     const LastName = childData.LastName;
-     const Mobile = childData.Mobile;
-
-     if(FirstName){
-        localStorage.setItem("FirstName", FirstName);
-        localStorage.setItem("LastName", LastName);
-        localStorage.setItem("Mobile", Mobile)
-     }
-	});
-
-	});
-
-	auth.onAuthStateChanged((user) => {
-	if (user) {
-	
-	mainPage.style.display = "block";
-	username.innerHTML = localStorage.getItem("FirstName") + " " + localStorage.getItem("LastName")
-	loginPage.style.display = "none";
-	}
-	else {
-	
-	mainPage.style.display = "none";
-	
-	loginPage.style.display = "block";
-	}
-	});
-	
-	LogOutBtn.addEventListener("click", function() {
-	auth.signOut().then(() => {
-	mainPage.style.display = "none";
-	loginPage.style.display = "block";
-	localStorage.clear()
-	}).catch((error) => {
-	console.error("Error during logout:", error);
-	});
-	});
-	
-	OfflineProductAmount.addEventListener("input", function(){
-	
-	OfflineTotalAmount.value = OfflineProductAmount.value*OfflineProductWeight.value
-	OfflinePayment= parseInt(OfflineTotalAmount.value) + parseInt(OfflinePayment)
-	})
-	
-
-	NewProductAmount.addEventListener("input", function(){
-	
-	NewTotalAmount.value = NewProductAmount.value*NewProductWeight.value
-	OnlinePayment= parseInt(NewProductAmount.value) + parseInt(NewProductWeight.value)
-	})
-	
-
-	const dropdown = document.getElementById('paymentDropdown')
-	
-	dropdown.addEventListener("change", function(){
-	
-	const selectedValue = dropdown.value;
-	console.log('Selected value:', selectedValue);
-	Payment = selectedValue;
-	
-	})
-	
-let additembtn = document.querySelector("#addItem").addEventListener("click", addItem)	
-
-function addItem() {
-    // Get values from input fields
-    var name = document.getElementById("NewProductName").value;
-    var product = document.getElementById("NewProductAmount").value;
-    var weight = document.getElementById("NewProductWeight").value;
-    var amount = document.getElementById("NewTotalAmount").value;
-
-    // Create a new table row HTML string
-    let rowHTML = `<tr>
-        <th scope="row">${name}</th>
-        <td>${product}</td>
-        <td>${weight}</td>
-        <td class="amountcal">${amount}</td>
-    </tr>`;
-
-    // Append the new row to the table
-    table.innerHTML += rowHTML;
-
-    // Update the total amount by calculating the sum of "amountcal" cells
-    updateTotalAmount();
-}
-
-function updateTotalAmount() {
-    // Get all elements with class "amountcal"
-    var amountCells = document.getElementsByClassName("amountcal");
-
-    // Calculate the total sum
-    let totalAmount = 0;
-    for (let i = 0; i < amountCells.length; i++) {
-        totalAmount += parseFloat(amountCells[i].textContent);
-    }
-
-    // Update the total amount on the page
-    document.getElementById("totalAmount").innerHTML = totalAmount;
-
-    PreviousPayment = totalAmount;
-
-}
-	
-// Event listener for adding offline items
-document.querySelector("#OfflineAddItem").addEventListener("click", OfflineAddItem);
-
-// Function to handle adding offline items
-function OfflineAddItem() {
-    // Retrieve input values
-    var name = document.getElementById("OfflineProductName").value;
-    var product = document.getElementById("OfflineProductAmount").value;
-    var weight = document.getElementById("OfflineProductWeight").value;
-    var amount = document.getElementById("OfflineTotalAmount").value;
-
-    // Create table row element
-    let RecEl = `<tr>
-        <th scope="row">${name}</th>
-        <td>${product}</td>
-        <td>${weight}</td>
-        <td id="amountcal">${amount}</td>
-    </tr>`;
-
-    // Append the row to the table
-    Offlinetable.innerHTML += RecEl;
-
-    // Update TotalAmount
-    let TotalAmount = document.getElementById("totalAmount").innerHTML = PreviousPayment;
-}
-
-// Initialize tasks array from local storage
-const tasks = JSON.parse(localStorage.getItem("OfflineEntry")) || [];
-
-// Event listener for adding offline tasks
-OfflineProductAddBtn.addEventListener("click", AddOfflineTaskFunction);
-
-// Function to handle adding offline tasks
-function AddOfflineTaskFunction() {
-    const taskText = Offlinetable.innerHTML;
-    tasks.push(taskText);
-    localStorage.setItem("OfflineEntry", JSON.stringify(tasks));
-    renderTasks();
-}
-
-    const taskListContainer = document.getElementById("OfflineTaskList");
-
-    function renderTaskAccordion(task, index) {
-        const listNum = index + 1;
-
-        return `
-            <div class="accordion-item">
-                <div class="accordion-header collapsed bg-warning" id="accord-2${listNum}One" data-bs-toggle="collapse" data-bs-target="#collapse2${listNum}One" aria-controls="collapse2${listNum}One" aria-expanded="false" role="button">
-                    <span class="accordion-header-text text-white">Data</span>
-                    <span class="text-white" style="position: absolute; right: 15px;">
-                        <i class="fa-solid fa-trash deleteBtn" data-index="${index}"></i>
-                    </span>
-                </div>
-
-                <div id="collapse2${listNum}One" class="accordion__body collapse" aria-labelledby="accord-2${listNum}One" data-bs-parent="#accordion-two">
-                    <div class="accordion-body-text">
-                        <table class="table rounded" id="usertable">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">Price</th>
-                                    <th scope="col">Weight</th>
-                                    <th scope="col">Total</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                               ${task}
-                            </tbody>
-                            <tfoot>
-                                <tr></tr>
-                            </tfoot>
-                        </table>
-                    </div>
-                </div>
-            </div>`;
-    }
-
-    function deleteTask(index) {
-        tasks.splice(index, 1);
-        localStorage.setItem("OfflineEntry", JSON.stringify(tasks));
-        // Reload the page or update the UI as needed
-    }
-
-    function renderTasks() {
-        // Assuming tasks is an array of objects with properties like 'name', 'price', 'weight', 'total'
-        let tasksHTML = '';
-        tasks.forEach((task, index) => {
-            tasksHTML += renderTaskAccordion(task, index);
+      let username = document.getElementById("username");
+      let LogOutBtn = document.querySelector("#LogOutBtn");
+      let submitButton = document.querySelector("#LogInBtn");
+      let UserNameList = document.getElementById("userlist")
+      let NewUserName = document.getElementById("NewUserName")
+      let NewProductName = document.getElementById("NewProductName")
+      let NewProductAmount = document.getElementById("NewProductAmount")
+      let NewProductWeight = document.getElementById("NewProductWeight")
+      let NewTotalAmount = document.getElementById("NewTotalAmount")
+      let OfflineProductAmount = document.getElementById("OfflineProductAmount")
+      let OfflineProductWeight = document.getElementById("OfflineProductWeight")
+      let OfflineTotalAmount = document.getElementById("OfflineTotalAmount")
+      let NewProductAddBtn = document.querySelector("#NewProductAddBtn")
+      let EmployeesName = document.getElementById("EmployeesName")
+      let EmployeesMobile = document.getElementById("EmployeesMobile")
+      let EmployeesList = document.getElementById("EmployeesList")
+      let AddNewEmployeesBtn = document.querySelector("#AddNewEmployeesBtn")
+      let ProductListName = document.getElementById("ProductListName")
+      let ProductListPrice = document.getElementById("ProductListPrice")
+      let AddNewProductListBtn = document.getElementById("AddNewProductList")
+      let NewProductsList = document.getElementById("NewProductsList")
+      let OwnerIDFromStorage = localStorage.getItem("Mobile")
+      
+      const currentDate = new Date();
+      
+      const day = currentDate.getDate();
+      
+      const month = currentDate.getMonth() + 1; // Adding 1 to get the correct month number
+      
+      const year = currentDate.getFullYear();
+      
+      let time = day + "/" + month + "/" + year
+      
+      var table = document.getElementById("todo");
+      var Offlinetable = document.getElementById("Offlinetodo");
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
+      import { getAuth, signInWithEmailAndPassword , createUserWithEmailAndPassword, deleteUser} from "https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js";
+      import { getDatabase, ref, push, set, onValue, remove } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-database.js";
+      let UserDropdown = document.getElementById("UserDropdown")
+      let Payment
+      let UserRef
+      let PreviousPayment = 0;
+      let OfflinePayment = 0;
+      let ListNum= 0
+      let OnlinePayment = 0;
+      let getuserdata= document.querySelector("#getuserdata")
+      const firebaseConfig = {
+      apiKey: "AIzaSyAbG3_c1cSimLBJDXIpUbeEO5dlkE4gYtA",
+      authDomain: "hisab-kitab-59285.firebaseapp.com",
+      projectId: "hisab-kitab-59285",
+      storageBucket: "hisab-kitab-59285.appspot.com",
+      messagingSenderId: "468481811490",
+      appId: "1:468481811490:web:a9f7298401d0d65f9c567b",
+      measurementId: "G-6KLG5W02T7"
+      };
+      
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth(app);
+      const database = getDatabase();
+      
+      submitButton.addEventListener("click", async function (e) {
+      e.preventDefault();
+      const mobileNumber = document.getElementById("mobileNumber").value;
+      const password = document.getElementById("password").value;
+      const ShopID = document.getElementById("ShopID").value;
+      
+      localStorage.setItem("OwnerID", mobileNumber);
+      localStorage.setItem("ShopID", ShopID)
+    
+      try { 
+      const userCredential = await signInWithEmailAndPassword(auth, "Owner" + "_" + ShopID + "_" + mobileNumber  + "@gmail.com", password);
+      const user = userCredential.user;
+      console.log("Success! Welcome back!");
+      alert("Login Successfully ! Welcome back!");
+    
+      
+      } catch (error) {
+        if(error.code == "auth/invalid-login-credentials"){
+          alert("Please Check Your Mobile And Password")
+        }
+      console.log(error);
+      }
+      });
+    
+      onValue(ref(database, `/Data/Owner/${localStorage.getItem("OwnerID")}/Personal/`), (snapshot) => {
+        snapshot.forEach((childSnapshot) => {
+            const childData = childSnapshot.val();
+            localStorage.setItem("Name", childData.Name)
+            localStorage.setItem("ShopName", childData.ShopName)
+            localStorage.setItem("ShopID", childData.ShopID)
+            
+            
+          
         });
-        taskListContainer.innerHTML = tasksHTML;
-    }
-
-    // Add event listener to the common ancestor (taskListContainer)
-    taskListContainer.addEventListener('click', function (event) {
-        const target = event.target;
-
-        // Check if the clicked element has the deleteBtn class
-        if (target.classList.contains('deleteBtn')) {
-            // Retrieve the index from the data-index attribute
-            const index = parseInt(target.getAttribute('data-index'), 10);
-
-            // Call deleteTask with the retrieved index
-            deleteTask(index);
-        }
     });
-
-renderTasks();
-	function submitForm(e) {
-    let Day = new Date();
-	e.preventDefault()
-	const UserName = NewUserName.value;
-	const ProductName = NewProductName.value;
-	const ProductAmount = NewProductAmount.value;
-	const ProductWeight = NewProductWeight.value;
-	const TotalAmount = ProductAmount*ProductWeight;
-	
-	if (UserName && ProductName) {
-	const usersRef = push(ref(database, `Data/${UserName}`));
-	set(usersRef, {
-	Name: UserName,
-	Product: table.innerHTML,
-	Status: Payment,
-  Total: PreviousPayment,
-	time: time
-	})
-
-  
-const paymentStatusRef = Payment === "PAID" ? "PAID" : "UNPAID";
-const dataRef = push(ref(database, `Owner/${Day.getMonth()+1}-${Day.getDay()}_To_${Day.getMonth()+1}-${Day.getDay() + 1}/${paymentStatusRef}`));
-
-set(dataRef, {
-    [Payment]: PreviousPayment
-}).then(() => {
-    alert("Record Added Successfully");
-    location.reload();
-}).catch((error) => {
-    alert("Error: " + error.message);
-}).then(() => {
-	alert("Record Added SuccessFully");
-	location.reload();
-	})
-	.catch((error) => {
-	alert("Product Not Added", error);
-	});
-	} else {
-	alert("Please enter both a Name and a Price.");
-	}
-	
-	}
-
-  let Day = new Date(); 
-
-	const ClearRecordRef = ref(database, `Owner/${Day.getMonth()+1}-${Day.getDay()}_To_${Day.getMonth()+1}-${Day.getDay()}`);
-	
- async function ClearPreviousRecord(RecordRef){
-   try {
-      await remove(RecordRef)
-   } catch (error) {
-      console.log(error) 
-   }
-  }
-
-  ClearPreviousRecord(ClearRecordRef)
-
-	NewProductAddBtn.addEventListener("click", submitForm)
-	
-let EraseData = document.querySelector("#EraseData")	
-	
-	
-	let PList = document.getElementById("PList");
-
-	const ownerID = localStorage.getItem("Mobile");
-	
-	UserDropdown.addEventListener("change", function(){
-	UserRef = UserDropdown.value
-	})
-	getuserdata.addEventListener("click", function(){
-	
-
-let totalPaid = 0;
-let totalUnpaid = 0;
-
-	console.log(UserRef)
-	onValue(ref(database, `Data/${UserRef}`), (snapshot) => {
-	
-	snapshot.forEach((childSnapshot) => {
-	const childData = childSnapshot.val();
-	let Name = childData.Name;
-	const Product = childData.Product; // It seems like you're missing 'LastPrice' in your data structure
-  const Total = childData.Total
-	const Status = childData.Status;
-	const Time = childData.time
-	const documentId = childSnapshot.key;
-
-
-
-if(Product){
-
-let RecEl = `
-	<div class="accordion-item" id="hide" style="width: 45%; margin-left:15px;">
-	<div class="accordion-header collapsed bg-warning ${Status}" id="accord-2${ListNum}One" data-bs-toggle="collapse" data-bs-target="#collapse2${ListNum}One" aria-controls="collapse2${ListNum}One" aria-expanded="false" role="button"><span class="accordion-header-text text-white">Date:- ${time} - ${Status} - ${Total}</span>
-	<span class="text-white" style="position: absolute; right: 15px;">
-	<i class="fa-solid fa-trash" data-document-id="${documentId}" id="delBtn"></i>
-	</span>
-	</div>
-	
-	<div id="collapse2${ListNum}One" class="accordion__body collapse" aria-labelledby="accord-2${ListNum}One" data-bs-parent="#accordion-two" style="">
-	<div class="accordion-body-text">
-<table class="table rounded" id="usertable">
-<thead>
-<tr>
-<th scope="col">Name</th>
-<th scope="col">Price</th>
-<th scope="col">Weight</th>
-<th scope="col">Total</th>
-</tr>
-</thead>
-${Product}
-<tfoot>
-<tr>
-<td>Payment:-</td>
-<td><b>${Status}</b></td>
-<td>
-</td>
-</tr>
-</tfoot>
-</table>
-	</div>
-	</div>
-	</div>`;
-
-
-
-        PList.innerHTML += RecEl;
-
-        if (Status === 'PAID') {
-            totalPaid += parseFloat(Total);
-        } else if (Status === 'UNPAID') {
-            totalUnpaid += parseFloat(Total);
-        }
-
-        ListNum++;
+    
+    
+      auth.onAuthStateChanged((user) => {
+      if (user) {
+      
+      mainPage.style.display = "block";
+      username.innerHTML = localStorage.getItem("Name")
+      loginPage.style.display = "none";
+      }
+      else {
+      
+      mainPage.style.display = "none";
+      
+      loginPage.style.display = "block";
+      }
+      });
+      
+      LogOutBtn.addEventListener("click", function() {
+      auth.signOut().then(() => {
+      mainPage.style.display = "none";
+      loginPage.style.display = "block";
+      localStorage.clear()
+      }).catch((error) => {
+      console.error("Error during logout:", error);
+      });
+      });
+      
+      OfflineProductAmount.addEventListener("input", function(){
+      
+      OfflineTotalAmount.value = OfflineProductAmount.value*OfflineProductWeight.value
+      OfflinePayment= parseInt(OfflineTotalAmount.value) + parseInt(OfflinePayment)
+      })
+      
+    
+      NewProductAmount.addEventListener("input", function(){
+      
+      NewTotalAmount.value = NewProductAmount.value*NewProductWeight.value
+      OnlinePayment= parseInt(NewProductAmount.value) + parseInt(NewProductWeight.value)
+      })
+      
+    
+      const dropdown = document.getElementById('paymentDropdown')
+      
+      dropdown.addEventListener("change", function(){
+      
+      const selectedValue = dropdown.value;
+      console.log('Selected value:', selectedValue);
+      Payment = selectedValue;
+      
+      })
+      
+    let additembtn = document.querySelector("#addItem").addEventListener("click", addItem)	
+    
+    function addItem() {
+        // Get values from input fields
+        var name = document.getElementById("NewProductName").value;
+        var product = document.getElementById("NewProductAmount").value;
+        var weight = document.getElementById("NewProductWeight").value;
+        var amount = document.getElementById("NewTotalAmount").value;
+    
+        // Create a new table row HTML string
+        let rowHTML = `<tr>
+            <th scope="row">${name}</th>
+            <td>${product}</td>
+            <td>${weight}</td>
+            <td class="amountcal">${amount}</td>
+        </tr>`;
+    
+        // Append the new row to the table
+        table.innerHTML += rowHTML;
+    
+        // Update the total amount by calculating the sum of "amountcal" cells
+        updateTotalAmount();
     }
-});
-
-// Now you have the totalPaid and totalUnpaid values
-
-// Display totalPaid and totalUnpaid in your HTML
-const totalPaidElement = document.getElementById('PaidRec');
-if (totalPaidElement) {
-    totalPaidElement.textContent = totalPaid.toFixed(2); // Display totalPaid
-}
-
-const totalUnpaidElement = document.getElementById('UnPaidRec');
-if (totalUnpaidElement) {
-    totalUnpaidElement.textContent = totalUnpaid.toFixed(2); // Display totalUnpaid
-}
-	const deleteButtons = document.querySelectorAll("#delBtn");
-	deleteButtons.forEach((btn) => {
-	btn.addEventListener("click", (event) => {
-	const documentIdToDelete = event.target.getAttribute("data-document-id");
-	if (documentIdToDelete) {
-	const documentRefToDelete = ref(database, `Data/${UserRef}/${documentIdToDelete}`);
-	
-	deleteDoc(documentRefToDelete);
-	}
-	});
-	});
-	});
-	async function deleteDoc(docRef) {
-	try {
-	await remove(docRef);
-	alert("Record successfully deleted!");
-	location.reload();
-	} catch (error) {
-	console.error(error);
-	setInterval(function() {
-	location.reload();
-	}, 500);
-	}
-	}
-	
-	async function EraseAllData(EraseRef) {
-	try {
-	await remove(EraseRef);
-	alert("Record successfully deleted!");
-	location.reload();
-	} catch (error) {
-	console.error(error);
-	setInterval(function() {
-	location.reload();
-	}, 500);
-	}
-	}
-	})
-	
-	
-	
-	AddNewUserBtn.addEventListener('click', async function (e) {
-	e.preventDefault();
-	
-	const NewUser = document.getElementById('UserName').value;
-	const NewMobile = document.getElementById('UserMobile').value;
-	
-	const newPassword = NewMobile;
-	
-	try {
-  let CurrentUserID
-	// Assuming you have the 'auth' and 'database' objects defined elsewhere
-	const userCredential = await createUserWithEmailAndPassword(auth, "User" + NewMobile + "@gmail.com", newPassword);
-  const OwnerListUser = push(ref(database, `Data/OwnerListUser/`));
-  const usersRef = push(ref(database, `Data/User/${NewMobile}`))
-	CurrentUserID = usersRef.key
-  set(usersRef, {
-	UserName: NewUser,
-	UserMobile: NewMobile,
-	UserPassword: newPassword
-	}).then(() => {
-	alert("Record Added Successfully");
-	location.reload();
-	}).catch((error) => {
-	alert("User Not Added. Error: " + error);
-	});
-
-	set(OwnerListUser, {
-  UserID: CurrentUserID,
-	UserName: NewUser,
-	UserMobile: NewMobile,
-	UserPassword: newPassword
-	}).then(() => {
-	alert("Record Added Successfully");
-	location.reload();
-	}).catch((error) => {
-	alert("User Not Added. Error: " + error);
-	});
-
-	
-	} catch (error) {
-    let CurrentUserID
-    const OwnerListUser = push(ref(database, `Data/OwnerListUser/`));
-  const usersRef = push(ref(database, `Data/User/${NewMobile}`))
-	CurrentUserID = usersRef.key
-    if (error.code === 'auth/email-already-in-use') {
-    set(usersRef, {
-    UserName: NewUser,
-    UserMobile: NewMobile,
-    UserPassword: newPassword
+    
+    function updateTotalAmount() {
+        // Get all elements with class "amountcal"
+        var amountCells = document.getElementsByClassName("amountcal");
+    
+        // Calculate the total sum
+        let totalAmount = 0;
+        for (let i = 0; i < amountCells.length; i++) {
+            totalAmount += parseFloat(amountCells[i].textContent);
+        }
+    
+        // Update the total amount on the page
+        document.getElementById("totalAmount").innerHTML = totalAmount;
+    
+        PreviousPayment = totalAmount;
+    
+    }
+      
+    // Event listener for adding offline items
+    document.querySelector("#OfflineAddItem").addEventListener("click", OfflineAddItem);
+    
+    // Function to handle adding offline items
+    function OfflineAddItem() {
+        // Retrieve input values
+        var name = document.getElementById("OfflineProductName").value;
+        var product = document.getElementById("OfflineProductAmount").value;
+        var weight = document.getElementById("OfflineProductWeight").value;
+        var amount = document.getElementById("OfflineTotalAmount").value;
+    
+        // Create table row element
+        let RecEl = `<tr>
+            <th scope="row">${name}</th>
+            <td>${product}</td>
+            <td>${weight}</td>
+            <td id="amountcal">${amount}</td>
+        </tr>`;
+    
+        // Append the row to the table
+        Offlinetable.innerHTML += RecEl;
+    
+        // Update TotalAmount
+        let TotalAmount = document.getElementById("totalAmount").innerHTML = PreviousPayment;
+    }
+    
+    // Initialize tasks array from local storage
+    const tasks = JSON.parse(localStorage.getItem("OfflineEntry")) || [];
+    
+    // Event listener for adding offline tasks
+    OfflineProductAddBtn.addEventListener("click", AddOfflineTaskFunction);
+    
+    // Function to handle adding offline tasks
+    function AddOfflineTaskFunction() {
+        const taskText = Offlinetable.innerHTML;
+        tasks.push(taskText);
+        localStorage.setItem("OfflineEntry", JSON.stringify(tasks));
+    }
+    
+        const taskListContainer = document.getElementById("OfflineTaskList");
+    
+        function renderTaskAccordion(task, index) {
+            const listNum = index + 1;
+    
+            return `
+                <div class="accordion-item">
+                    <div class="accordion-header collapsed bg-warning" id="accord-2${listNum}One" data-bs-toggle="collapse" data-bs-target="#collapse2${listNum}One" aria-controls="collapse2${listNum}One" aria-expanded="false" role="button">
+                        <span class="accordion-header-text text-white">Data</span>
+                        <span class="text-white" style="position: absolute; right: 15px;">
+                            <i class="fa-solid fa-trash deleteBtn" data-index="${index}"></i>
+                        </span>
+                    </div>
+    
+                    <div id="collapse2${listNum}One" class="accordion__body collapse" aria-labelledby="accord-2${listNum}One" data-bs-parent="#accordion-two">
+                        <div class="accordion-body-text">
+                            <table class="table rounded" id="usertable">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Price</th>
+                                        <th scope="col">Weight</th>
+                                        <th scope="col">Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                   ${task}
+                                </tbody>
+                                <tfoot>
+                                    <tr></tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>`;
+        }
+    
+        function deleteTask(index) {
+            tasks.splice(index, 1);
+            localStorage.setItem("OfflineEntry", JSON.stringify(tasks));
+            // Reload the page or update the UI as needed
+        }
+    
+        function renderTasks() {
+            // Assuming tasks is an array of objects with properties like 'name', 'price', 'weight', 'total'
+            let tasksHTML = '';
+            tasks.forEach((task, index) => {
+                tasksHTML += renderTaskAccordion(task, index);
+            });
+            taskListContainer.innerHTML = tasksHTML;
+        }
+    
+        // Add event listener to the common ancestor (taskListContainer)
+        taskListContainer.addEventListener('click', function (event) {
+            const target = event.target;
+    
+            // Check if the clicked element has the deleteBtn class
+            if (target.classList.contains('deleteBtn')) {
+                // Retrieve the index from the data-index attribute
+                const index = parseInt(target.getAttribute('data-index'), 10);
+    
+                // Call deleteTask with the retrieved index
+                deleteTask(index);
+            }
+        });
+    
+    setInterval(renderTasks, 100)
+      
+      function submitForm(e) {
+        let Day = new Date();
+      e.preventDefault()
+      const UserName = NewUserName.value;
+      const ProductName = NewProductName.value;
+      const ProductAmount = NewProductAmount.value;
+      const ProductWeight = NewProductWeight.value;
+      const TotalAmount = ProductAmount*ProductWeight;
+      
+      if (UserName && ProductName) {
+      const usersRef = push(ref(database, `Data/Owner/${localStorage.getItem("OwnerID")}/User/${UserName}`));
+      set(usersRef, {
+      Name: UserName,
+      Product: table.innerHTML,
+      Status: Payment,
+      Total: PreviousPayment,
+      time: time
+      })
+    
+      
+    const paymentStatusRef = Payment === "PAID" ? "PAID" : "UNPAID";
+    const dataRef = push(ref(database, `Data/Owner/${localStorage.getItem("OwnerID")}/${Day.getMonth()+1}-${Day.getDay()}_To_${Day.getMonth()+1}-${Day.getDay() + 1}/${paymentStatusRef}`));
+    
+    set(dataRef, {
+        [Payment]: PreviousPayment
+    }).then(() => {
+        alert("Record Added Successfully");
+        location.reload();
+    }).catch((error) => {
+        alert("Error: " + error.message);
+    }).then(() => {
+      alert("Record Added SuccessFully");
+      location.reload();
+      })
+      .catch((error) => {
+      alert("Product Not Added", error);
+      });
+      } else {
+      alert("Please enter both a Name and a Price.");
+      }
+      
+      }
+    
+      let Day = new Date(); 
+    
+      const ClearRecordRef = ref(database, `Data/Owner/${localStorage.getItem("OwnerID")}/${Day.getMonth()+1}-${Day.getDay()}_To_${Day.getMonth()+1}-${Day.getDay()}`);
+      
+     async function ClearPreviousRecord(RecordRef){
+       try {
+          await remove(RecordRef)
+       } catch (error) {
+          console.log(error) 
+       }
+      }
+    
+      ClearPreviousRecord(ClearRecordRef)
+    
+      NewProductAddBtn.addEventListener("click", submitForm)
+      
+    let EraseData = document.querySelector("#EraseData")	
+      
+      let totalPaid = 0;
+      let totalUnpaid = 0;	
+    
+      let PList = document.getElementById("PList");
+    
+      const ownerID = localStorage.getItem("Mobile");
+      
+      UserDropdown.addEventListener("change", function(){
+      UserRef = UserDropdown.value
+      })
+      getuserdata.addEventListener("click", function(){
+      
+      console.log(UserRef)
+      onValue(ref(database, `Data/Owner/${localStorage.getItem("OwnerID")}/${UserRef}`), (snapshot) => {
+      
+      snapshot.forEach((childSnapshot) => {
+      const childData = childSnapshot.val();
+      let Name = childData.Name;
+      const Product = childData.Product; // It seems like you're missing 'LastPrice' in your data structure
+      const Total = childData.Total;
+      const Status = childData.Status;
+      const Time = childData.time
+      const documentId = childSnapshot.key;
+    
+    
+    
+    if(Product){
+    
+    let RecEl = `
+      <div class="accordion-item" id="hide" style="width:45%; margin-left:15px;">
+      <div class="accordion-header collapsed bg-warning" id="accord-2${ListNum}One" data-bs-toggle="collapse" data-bs-target="#collapse2${ListNum}One" aria-controls="collapse2${ListNum}One" aria-expanded="false" role="button"><span class="accordion-header-text text-white">Date:- ${time} - ${Status} - ${Total}</span>
+      <span class="text-white" style="position: absolute; right: 15px;">
+      <i class="fa-solid fa-trash" data-document-id="${documentId}" id="delBtn"></i>
+      </span>
+      </div>
+      
+      <div id="collapse2${ListNum}One" class="accordion__body collapse" aria-labelledby="accord-2${ListNum}One" data-bs-parent="#accordion-two" style="">
+      <div class="accordion-body-text">
+    <table class="table rounded" id="usertable">
+    <thead>
+    <tr>
+    <th scope="col">Name</th>
+    <th scope="col">Price</th>
+    <th scope="col">Weight</th>
+    <th scope="col">Total</th>
+    </tr>
+    </thead>
+    ${Product}
+    <tfoot>
+    <tr>
+    <td>Payment:-</td>
+    <td><b>${Status}</b></td>
+    <td>
+    </td>
+    </tr>
+    </tfoot>
+    </table>
+      </div>
+      </div>
+      </div>`;
+    
+    
+            PList.innerHTML += RecEl;
+    
+            if (Status === 'PAID') {
+                totalPaid += parseFloat(Total);
+            } else if (Status === 'UNPAID') {
+                totalUnpaid += parseFloat(Total);
+            }
+    
+            ListNum++;
+    }
+      });
+      
+    // Display totalPaid and totalUnpaid in your HTML
+    const totalPaidElement = document.getElementById('PaidRec');
+    if (totalPaidElement) {
+        totalPaidElement.textContent = totalPaid.toFixed(2); // Display totalPaid
+    }
+    
+    const totalUnpaidElement = document.getElementById('UnPaidRec');
+    if (totalUnpaidElement) {
+        totalUnpaidElement.textContent = totalUnpaid.toFixed(2); // Display totalUnpaid
+    }
+    
+      const deleteButtons = document.querySelectorAll("#delBtn");
+      deleteButtons.forEach((btn) => {
+      btn.addEventListener("click", (event) => {
+      const documentIdToDelete = event.target.getAttribute("data-document-id");
+      if (documentIdToDelete) {
+      const documentRefToDelete = ref(database, `Data/Owner/${localStorage.getItem("OwnerID")}/${UserRef}/${documentIdToDelete}`);
+      
+      deleteDoc(documentRefToDelete);
+      }
+      });
+      });
+      });
+      async function deleteDoc(docRef) {
+      try {
+      await remove(docRef);
+      alert("Record successfully deleted!");
+      location.reload();
+      } catch (error) {
+      console.error(error);
+      setInterval(function() {
+      location.reload();
+      }, 500);
+      }
+      }
+      
+      async function EraseAllData(EraseRef) {
+      try {
+      await remove(EraseRef);
+      alert("Record successfully deleted!");
+      location.reload();
+      } catch (error) {
+      console.error(error);
+      setInterval(function() {
+      location.reload();
+      }, 500);
+      }
+      }
+      })
+      
+      
+      
+      AddNewUserBtn.addEventListener('click', async function (e) {
+      e.preventDefault();
+      
+      const NewUser = document.getElementById('UserName').value;
+      const NewMobile = document.getElementById('UserMobile').value;
+      
+      const newPassword = NewMobile;
+      
+      try {
+      let CurrentUserID
+      // Assuming you have the 'auth' and 'database' objects defined elsewhere
+      const userCredential = await createUserWithEmailAndPassword(auth, "User" + NewMobile + "@gmail.com", newPassword);
+      const OwnerListUser = push(ref(database, `Data/Owner/${localStorage.getItem("OwnerID")}/UserList/`));
+      const usersRef = push(ref(database, `Data/Owner/${localStorage.getItem("OwnerID")}/User/${NewMobile}`))
+      CurrentUserID = usersRef.key
+      set(usersRef, {
+      UserName: NewUser,
+      UserMobile: NewMobile,
+      UserPassword: newPassword
+      }).then(() => {
+      alert("Record Added Successfully");
+      location.reload();
+      }).catch((error) => {
+      alert("User Not Added. Error: " + error);
+      });
+    
+      set(OwnerListUser, {
+      UserID: CurrentUserID,
+      UserName: NewUser,
+      UserMobile: NewMobile,
+      UserPassword: newPassword
+      }).then(() => {
+      alert("Record Added Successfully");
+      location.reload();
+      }).catch((error) => {
+      alert("User Not Added. Error: " + error);
+      });
+    
+      
+      } catch (error) {
+        let CurrentUserID
+        const OwnerListUser = push(ref(database, `Data/Owner/${localStorage.getItem("OwnerID")}/UserList/`));
+      const usersRef = push(ref(database, `Data/Owner/${localStorage.getItem("OwnerID")}/User/${NewMobile}`))
+      CurrentUserID = usersRef.key
+        if (error.code === 'auth/email-already-in-use') {
+        set(usersRef, {
+        UserName: NewUser,
+        UserMobile: NewMobile,
+        UserPassword: newPassword
+        }).then(() => {
+        alert("Record Added Successfully");
+        location.reload();
+        }).catch((error) => {
+        alert("User Not Added. Error: " + error);
+        });
+      
+      }else{
+      set(OwnerListUser, {
+      UserID: CurrentUserID,
+      UserName: NewUser,
+      UserMobile: NewMobile,
+      UserPassword: newPassword
+      }).then(() => {
+      alert("Record Added Successfully");
+      location.reload();
+      }).catch((error) => {
+      alert("User Not Added. Error: " + error);
+      });
+      
+      }
+      }
+      });
+      
+      
+      let UserList = document.getElementById("UserList");
+      
+      
+      onValue(ref(database, `Data/Owner/${localStorage.getItem("OwnerID")}/UserList/`), (snapshot) => {
+      
+      snapshot.forEach((childSnapshot) => {
+      const childData = childSnapshot.val();
+      const AddNewUserName = childData.UserName;
+      const AddNewUserMobile = childData.UserMobile; // It seems like you're missing 'LastPrice' in your data structure
+      
+      const userId = childSnapshot.key;
+      UserDropdown.innerHTML += `<option value="User/${AddNewUserMobile}">${AddNewUserName}:- ${AddNewUserMobile}</option>`
+      UserList.innerHTML += `
+      <li style="width: 45%; margin-left: 15px;">
+      <div class="item-content">
+      <a href="#" class="item-media"><img src="../assets/images/images.png" alt="logo" width="55" /></a>
+      
+      <div class="item-inner">
+      <div class="item-title-row">
+      
+      <h6 class="item-title"><a href="#">Name:- ${AddNewUserName}</a></h6>
+      <h5 class="item-title"><a href="#">Mobile:- ${AddNewUserMobile}</a></h5>
+      <h5 class="item-title"><a class="text-success" href="#">Password:- ${AddNewUserMobile}</a></h5>
+      </div>
+      
+      
+      </div>
+      <div style="margin-left:50px; right:0px; color:red; font-size:20px" class="mb-6">
+      <i class="fa-solid fa-trash" data-user-path="${childData.UserMobile}" data-document-id="${userId}" id="delBtn" style="position: relative; top:40px; right: 10px;"></i>
+      </div>
+      </div>
+      </div>
+      </div>
+      
+      <div class="sortable-handler"></div>
+      </li>`;
+      
+      ListNum++;
+      UserNameList.innerHTML += `<option value="User/${childData.UserMobile}"><b>${childData.UserName}</b></option>`
+      
+      });
+      
+      
+      
+      const deleteButtons = document.querySelectorAll("#delBtn");
+      deleteButtons.forEach((btn) => {
+      btn.addEventListener("click", (event) => {
+      const documentIdToDelete = event.target.getAttribute("data-document-id");
+        const documentPathToDelete = event.target.getAttribute("data-user-path");
+      if (documentIdToDelete) {
+      const documentRefToDelete = ref(database, `Data/Owner/${localStorage.getItem("OwnerID")}/UserList/${documentIdToDelete}`);
+      const documentPathRefToDelete = ref(database, `Data/Owner/${localStorage.getItem("OwnerID")}/User/${documentPathToDelete}`);	
+      deleteUserFromDB(documentRefToDelete);
+      deleteUserFromOwner(documentPathRefToDelete);
+      }
+      });
+      });
+      });
+      
+    
+      async function deleteUserFromOwner(docRef) {
+      try {
+      await remove(docRef);
+      alert(" successfully deleted!");
+      } catch (error) {
+      console.error(error);
+         Console.log(error)
+      }
+      }
+      
+      async function deleteUserFromDB(docRef) {
+      try {
+      await remove(docRef);
+      alert(" successfully deleted!");
+      location.reload();
+      } catch (error) {
+      console.error(error);
+      setInterval(function() {
+      location.reload();
+      }, 500);
+      }
+      }
+      
+      let NewEmployeePass = document.getElementById("NewEmployeePass")
+      AddNewEmployeesBtn.addEventListener('click', async function(e) {
+      e.preventDefault();
+      
+      const EmployeeName = document.getElementById('EmployeesName').value;
+      const EmployeeMobile = document.getElementById('EmployeesMobile').value;
+      
+      try {
+      let EmployeeID
+      const userCredential = await createUserWithEmailAndPassword(auth, EmployeeMobile +"_"+ OwnerIDFromStorage + "@gmail.com", EmployeeMobile);
+        
+      const OwnerListEmployee = push(ref(database, `Data/Owner/${localStorage.getItem("OwnerID")}/EmployeeList/`));
+      const EmployeeRef = push(ref(database, `Data/Owner/${localStorage.getItem("OwnerID")}/Employee/${NewMobile}`))
+      EmployeeID = EmployeeRef.key
+      // const EmployeeRef = push(ref(database, `${EmployeeMobile}`));
+      set(EmployeeRef, {
+      Name: EmployeeName,
+      Mobile: EmployeeMobile,
+      Password: EmployeeMobile
+      }).then(() => {
+      alert("Record Added Successfully");
+      location.reload();
+      }).catch((error) => {
+      alert("User Not Added. Error: " + error);
+      });
+      
+      set(OwnerListEmployee, {
+      EmployeeID: EmployeeID,
+      Name: EmployeeName,
+      Mobile: EmployeeMobile,
+      Password: EmployeeMobile
+      }).then(() => {
+      alert("Record Added Successfully");
+      location.reload();
+      }).catch((error) => {
+      alert("User Not Added. Error: " + error);
+      });
+      
+      } catch (error) {
+    
+        
+      const OwnerListEmployee = push(ref(database, `Data/Owner/${localStorage.getItem("OwnerID")}/EmployeeList/`));
+      const EmployeeRef = push(ref(database, `Data/Owner/${localStorage.getItem("OwnerID")}/Employee/${EmployeeMobile}`))
+      let EmployeeID = EmployeeRef.key
+    
+         if (error.code === 'auth/email-already-in-use') {
+    set(EmployeeRef, {
+    Name: EmployeeName,
+    Mobile: EmployeeMobile,
+    Password: EmployeeMobile
     }).then(() => {
     alert("Record Added Successfully");
     location.reload();
     }).catch((error) => {
     alert("User Not Added. Error: " + error);
     });
-  
-	}else{
-  set(OwnerListUser, {
-  UserID: CurrentUserID,
-	UserName: NewUser,
-	UserMobile: NewMobile,
-	UserPassword: newPassword
-	}).then(() => {
-	alert("Record Added Successfully");
-	location.reload();
-	}).catch((error) => {
-	alert("User Not Added. Error: " + error);
-	});
-	
-  }
-	}
-	});
-	
-	
-	let UserList = document.getElementById("UserList");
-	
-	
-	onValue(ref(database, `Data/OwnerListUser/`), (snapshot) => {
-	
-	snapshot.forEach((childSnapshot) => {
-	const childData = childSnapshot.val();
-	const AddNewUserName = childData.UserName;
-	const AddNewUserMobile = childData.UserMobile; // It seems like you're missing 'LastPrice' in your data structure
-	
-	const userId = childSnapshot.key;
-	UserDropdown.innerHTML += `<option value="User/${AddNewUserMobile}">${AddNewUserName}:- ${AddNewUserMobile}</option>`
-	UserList.innerHTML += `
-	<li>
-	<div class="item-content">
-	<a href="#" class="item-media"><img src="../assets/images/images.png" alt="logo" width="55" /></a>
-	
-	<div class="item-inner">
-	<div class="item-title-row">
-	
-	<h6 class="item-title"><a href="#">Name:- ${AddNewUserName}</a></h6>
-	<h5 class="item-title"><a href="#">Mobile:- ${AddNewUserMobile}</a></h5>
-	<h5 class="item-title"><a class="text-success" href="#">Password:- ${AddNewUserMobile}</a></h5>
-	</div>
-	
-	
-	</div>
-	<div style="position: absolute; right:20px; color:red; font-size:20px" class="mb-6">
-	<i class="fa-solid fa-trash" data-user-path="${childData.UserMobile}" data-document-id="${userId}" id="delBtn" style="position: relative; top:40px; right: 10px;"></i>
-	</div>
-	</div>
-	</div>
-	</div>
-	
-	<div class="sortable-handler"></div>
-	</li>`;
-	
-	ListNum++;
-	UserNameList.innerHTML += `<option value="User/${childData.UserMobile}"><b>${childData.UserName}</b></option>`
-	
-	});
-	
-	
-	
-	const deleteButtons = document.querySelectorAll("#delBtn");
-	deleteButtons.forEach((btn) => {
-	btn.addEventListener("click", (event) => {
-	const documentIdToDelete = event.target.getAttribute("data-document-id");
-    const documentPathToDelete = event.target.getAttribute("data-user-path");
-	if (documentIdToDelete) {
-	const documentRefToDelete = ref(database, `Data/OwnerListUser/${documentIdToDelete}`);
-	const documentPathRefToDelete = ref(database, `Data/User/${documentPathToDelete}`);	
-	deleteUserFromDB(documentRefToDelete);
-	deleteUserFromOwner(documentPathRefToDelete);
-	}
-	});
-	});
-	});
-	
-
-	async function deleteUserFromOwner(docRef) {
-	try {
-	await remove(docRef);
-	alert(" successfully deleted!");
-	} catch (error) {
-	console.error(error);
-     Console.log(error)
-	}
-	}
-	
-	async function deleteUserFromDB(docRef) {
-	try {
-	await remove(docRef);
-	alert(" successfully deleted!");
-	location.reload();
-	} catch (error) {
-	console.error(error);
-	setInterval(function() {
-	location.reload();
-	}, 500);
-	}
-	}
-	
-	let NewEmployeePass = document.getElementById("NewEmployeePass")
-	AddNewEmployeesBtn.addEventListener('click', async function(e) {
-	e.preventDefault();
-	
-	const EmployeeName = document.getElementById('EmployeesName').value;
-	const EmployeeMobile = document.getElementById('EmployeesMobile').value;
-	
-	try {
-	let EmployeeID
-	const userCredential = await createUserWithEmailAndPassword(auth, EmployeeMobile +"_"+ localStorage.getItem("OwnerMobile") + "@gmail.com", EmployeeMobile);
     
-  const OwnerListEmployee = push(ref(database, `Data/OwnerListEmployee/`));
-  const EmployeeRef = push(ref(database, `Data/Employee/${NewMobile}`))
-	EmployeeID = EmployeeRef.key
-  // const EmployeeRef = push(ref(database, `${EmployeeMobile}`));
-	set(EmployeeRef, {
-	Name: EmployeeName,
-	Mobile: EmployeeMobile,
-	Password: EmployeeMobile
-	}).then(() => {
-	alert("Record Added Successfully");
-	location.reload();
-	}).catch((error) => {
-	alert("User Not Added. Error: " + error);
-	});
-	
-	set(OwnerListEmployee, {
-  EmployeeID: EmployeeID,
-	Name: EmployeeName,
-	Mobile: EmployeeMobile,
-	Password: EmployeeMobile
-	}).then(() => {
-	alert("Record Added Successfully");
-	location.reload();
-	}).catch((error) => {
-	alert("User Not Added. Error: " + error);
-	});
-	
-	} catch (error) {
-
-    
-  const OwnerListEmployee = push(ref(database, `Data/OwnerListEmployee/`));
-  const EmployeeRef = push(ref(database, `Data/Employee/${EmployeeMobile}`))
-	let EmployeeID = EmployeeRef.key
-
-     if (error.code === 'auth/email-already-in-use') {
-set(EmployeeRef, {
-Name: EmployeeName,
-Mobile: EmployeeMobile,
-Password: EmployeeMobile
-}).then(() => {
-alert("Record Added Successfully");
-location.reload();
-}).catch((error) => {
-alert("User Not Added. Error: " + error);
-});
-
-set(OwnerListEmployee, {
-EmployeeID: EmployeeRef.key,
-Name: EmployeeName,
-Mobile: EmployeeMobile,
-Password: EmployeeMobile
-}).then(() => {
-alert("Record Added Successfully");
-location.reload();
-}).catch((error) => {
-alert("User Not Added. Error: " + error);
-});
-   
-}
-	}
-	});
-		
-	
-	onValue(ref(database, `Data/OwnerListEmployee/`), (snapshot) => {
-	
-	snapshot.forEach((childSnapshot) => {
-	const childData = childSnapshot.val();
-	const AddNewEmployeeName = childData.Name;
-	const AddNewEmployeeMobile = childData.Mobile; // It seems like you're missing 'LastPrice' in your data structure
-	
-	const employeeId = childSnapshot.key;
-	EmployeesList.innerHTML += `
-	<li>
-	<div class="item-content">
-	<a href="#" class="item-media"><img src="../assets/images/images.png" alt="logo" width="55" /></a>
-	
-	<div class="item-inner">
-	<div class="item-title-row">
-	
-	<h6 class="item-title"><a href="#">Name:- ${AddNewEmployeeName}</a></h6>
-	</div>
-	
-	<div class="item-price">Mobile:- ${AddNewEmployeeMobile}</div>
-	</div>
-	<div style="position: absolute; right:20px; color:red; font-size:20px" class="mb-6">
-	<i class="fa-solid fa-trash" data-employee-path="${AddNewEmployeeMobile}" data-document-id="${employeeId}" id="delBtn" style="position: relative; top:40px; right: 10px;"></i>
-	</div>
-	</div>
-	</div>
-	</div>
-	
-	<div class="sortable-handler"></div>
-	</li>`;
-	
-	ListNum++;
-	
-	
-	});
-	
-	const deleteButtons = document.querySelectorAll("#delBtn");
-	deleteButtons.forEach((btn) => {
-	btn.addEventListener("click", (event) => {
-	const documentIdToDelete = event.target.getAttribute("data-document-id");
-	const documentPathToDelete = event.target.getAttribute("data-employee-path");	
-	if (documentIdToDelete) {
-    const documentRefToDelete = ref(database, `Data/OwnerListEmployee/${documentIdToDelete}`);
-	  const documentPathRefToDelete = ref(database, `Data/Employee/${documentPathToDelete}`);	
-		deleteEmployee(documentRefToDelete);
-	deleteEmployeeFromOwner(documentPathRefToDelete);
-	}
-	});
-	});
-	});
-	
-	async function deleteEmployeeFromOwner(docRef) {
-	try {
-	await remove(docRef);
-	alert("Record successfully deleted!");
-	} catch (error) {
-	console.error(error);
-	}
-	}
-	
-	async function deleteEmployee(docRef) {
-	try {
-	await remove(docRef);
-	alert("Record successfully deleted!");
-	location.reload();
-	} catch (error) {
-	console.error(error);
-	setInterval(function() {
-	location.reload();
-	}, 500);
-	}
-	}
-	
-	function ProductsForm(e) {
-	e.preventDefault()
-	const Product = ProductListName.value;
-	const ProductPrice = ProductListPrice.value
-	
-	
-	if (Product && ProductPrice) {
-	const usersRef = push(ref(database, `Product`));
-	set(usersRef, {
-	Name: Product,
-	Price: ProductPrice
-	})
-	.then(() => {
-	alert("Record Added SuccessFully");
-	location.reload();
-	})
-	.catch((error) => {
-	alert("User Not Added", error);
-	});
-	} else {
-	alert("Please enter both a Name and a Mobile");
-	}
-	}
-	
-	AddNewProductListBtn.addEventListener("click", ProductsForm)
-	
-	
-	onValue(ref(database, `Product`), (snapshot) => {
-	
-	snapshot.forEach((childSnapshot) => {
-	const childData = childSnapshot.val();
-	const AddNewProductListName = childData.Name;
-	const AddNewProductListPrice = childData.Price; // It seems like you're missing 'LastPrice' in your data structure
-	
-	const ProductId = childSnapshot.key;
-	NewProductsList.innerHTML += `
-	<li>
-	<div class="item-content">
-	<a href="#" class="item-media"><img src="../assets/images/shop.png" alt="logo" width="55" /></a>
-	
-	<div class="item-inner">
-	<div class="item-title-row">
-	
-	<h6 class="item-title"><a href="#">Name:- ${AddNewProductListName}</a></h6>
-	</div>
-	
-	<div class="item-price">Price:- ${AddNewProductListPrice}</div>
-	</div>
-	<div style="position: absolute; right:20px; color:red; font-size:20px" class="mb-6">
-	<i class="fa-solid fa-trash" data-document-id="${ProductId}" id="delBtn" style="position: relative; top:40px; right: 10px;"></i>
-	</div>
-	</div>
-	</div>
-	</div>
-	
-	<div class="sortable-handler"></div>
-	</li>`;
-	
-	ListNum++;
-	
-	
-	});
-	
-	const deleteButtons = document.querySelectorAll("#delBtn");
-	deleteButtons.forEach((btn) => {
-	btn.addEventListener("click", (event) => {
-	const documentIdToDelete = event.target.getAttribute("data-document-id");
-	if (documentIdToDelete) {
-	const documentRefToDelete = ref(database, `${OwnerIDFromStorage}=Product/${documentIdToDelete}`);
-	deleteProduct(documentRefToDelete);
-	}
-	});
-	});
-	});
-	
-	async function deleteProduct(docRef) {
-	try {
-	await remove(docRef);
-	alert(" successfully deleted!");
-	location.reload();
-	} catch (error) {
-	console.error(error);
-	setInterval(function() {
-	location.reload();
-	}, 500);
-	}
-	} 
-	
-	
-	</script>
-
+    set(OwnerListEmployee, {
+    EmployeeID: EmployeeRef.key,
+    Name: EmployeeName,
+    Mobile: EmployeeMobile,
+    Password: EmployeeMobile
+    }).then(() => {
+    alert("Record Added Successfully");
+    location.reload();
+    }).catch((error) => {
+    alert("User Not Added. Error: " + error);
+    });
+       
+    }
+      }
+      });
+        
+      
+      onValue(ref(database, `Data/Owner/${localStorage.getItem("OwnerID")}/EmployeeList/`), (snapshot) => {
+      
+      snapshot.forEach((childSnapshot) => {
+      const childData = childSnapshot.val();
+      const AddNewEmployeeName = childData.Name;
+      const AddNewEmployeeMobile = childData.Mobile; // It seems like you're missing 'LastPrice' in your data structure
+      
+      const employeeId = childSnapshot.key;
+      EmployeesList.innerHTML += `
+      <li style="width:35%; margin-left: 15px;">
+      <div class="item-content">
+      <a href="#" class="item-media"><img src="../assets/images/images.png" alt="logo" width="55" /></a>
+      
+      <div class="item-inner">
+      <div class="item-title-row">
+      
+      <h6 class="item-title"><a href="#">Name:- ${AddNewEmployeeName}</a></h6>
+      </div>
+      
+      <div class="item-price">Mobile:- ${AddNewEmployeeMobile}</div>
+      </div>
+      <div style="margin-left:40px; color:red; font-size:20px" class="mb-6">
+      <i class="fa-solid fa-trash" data-employee-path="${AddNewEmployeeMobile}" data-document-id="${employeeId}" id="delBtn" style="position: relative; top:40px; right: 10px;"></i>
+      </div>
+      </div>
+      </div>
+      </div>
+      
+      <div class="sortable-handler"></div>
+      </li>`;
+      
+      ListNum++;
+      
+      
+      });
+      
+      const deleteButtons = document.querySelectorAll("#delBtn");
+      deleteButtons.forEach((btn) => {
+      btn.addEventListener("click", (event) => {
+      const documentIdToDelete = event.target.getAttribute("data-document-id");
+      const documentPathToDelete = event.target.getAttribute("data-employee-path");	
+      if (documentIdToDelete) {
+        const documentRefToDelete = ref(database, `Data/Owner/${localStorage.getItem("OwnerID")}/EmployeeList/${documentIdToDelete}`);
+        const documentPathRefToDelete = ref(database, `Data/Owner/${localStorage.getItem("OwnerID")}/Employee/${documentPathToDelete}`);	
+        deleteEmployee(documentRefToDelete);
+      deleteEmployeeFromOwner(documentPathRefToDelete);
+      }
+      });
+      });
+      });
+      
+      async function deleteEmployeeFromOwner(docRef) {
+      try {
+      await remove(docRef);
+      alert("Record successfully deleted!");
+      } catch (error) {
+      console.error(error);
+      }
+      }
+      
+      async function deleteEmployee(docRef) {
+      try {
+      await remove(docRef);
+      alert("Record successfully deleted!");
+      location.reload();
+      } catch (error) {
+      console.error(error);
+      setInterval(function() {
+      location.reload();
+      }, 500);
+      }
+      }
+      
+      function ProductsForm(e) {
+      e.preventDefault()
+      const Product = ProductListName.value;
+      const ProductPrice = ProductListPrice.value
+      
+      
+      if (Product && ProductPrice) {
+      const usersRef = push(ref(database, `Product`));
+      set(usersRef, {
+      Name: Product,
+      Price: ProductPrice
+      })
+      .then(() => {
+      alert("Record Added SuccessFully");
+      location.reload();
+      })
+      .catch((error) => {
+      alert("User Not Added", error);
+      });
+      } else {
+      alert("Please enter both a Name and a Mobile");
+      }
+      }
+      
+      AddNewProductListBtn.addEventListener("click", ProductsForm)
+      
+      
+      onValue(ref(database, `Data/Owner/${localStorage.getItem("OwnerID")}/Product/`), (snapshot) => {
+      
+      snapshot.forEach((childSnapshot) => {
+      const childData = childSnapshot.val();
+      const AddNewProductListName = childData.Name;
+      const AddNewProductListPrice = childData.Price; // It seems like you're missing 'LastPrice' in your data structure
+      
+      const ProductId = childSnapshot.key;
+      NewProductsList.innerHTML += `
+      <li style="width: 32%; margin-left: 15px; ">
+      <div class="item-content">
+      <a href="#" class="item-media"><img src="../assets/images/shop.png" alt="logo" width="55" /></a>
+      
+      <div class="item-inner">
+      <div class="item-title-row">
+      
+      <h6 class="item-title"><a href="#">Name:- ${AddNewProductListName}</a></h6>
+      </div>
+      
+      <div class="item-price">Price:- ${AddNewProductListPrice}</div>
+      </div>
+      <div style="margin-left:40px; color:red; font-size:20px" class="mb-6">
+      <i class="fa-solid fa-trash" data-document-id="${ProductId}" id="delBtn" style="position: relative; top:40px; right: 10px;"></i>
+      </div>
+      </div>
+      </div>
+      </div>
+      
+      <div class="sortable-handler"></div>
+      </li>`;
+      
+      ListNum++;
+      
+      
+      });
+      
+      const deleteButtons = document.querySelectorAll("#delBtn");
+      deleteButtons.forEach((btn) => {
+      btn.addEventListener("click", (event) => {
+      const documentIdToDelete = event.target.getAttribute("data-document-id");
+      if (documentIdToDelete) {
+      const documentRefToDelete = ref(database, `Data/Owner/${localStorage.getItem("OwnerID")}/Product/${documentIdToDelete}`);
+      deleteProduct(documentRefToDelete);
+      }
+      });
+      });
+      });
+      
+      async function deleteProduct(docRef) {
+      try {
+      await remove(docRef);
+      alert(" successfully deleted!");
+      location.reload();
+      } catch (error) {
+      console.error(error);
+      setInterval(function() {
+      location.reload();
+      }, 500);
+      }
+      } 
+      
+      
+      </script>
     <script src="../assets/js/jquery.js"></script>
 
     <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
