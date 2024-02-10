@@ -59,8 +59,11 @@
     <div class="container">
     <div class="account-area">
     <form class="">
+      <div class="input-group">
+        <input type="tel" placeholder="Shop ID" id="ShopID"  class="form-control">
+        </div>
     <div class="input-group">
-    <input type="tel" placeholder="User Name" id="mobileNumber"  class="form-control">
+    <input type="tel" placeholder="Owner Mobile" id="mobileNumber"  class="form-control">
     </div>
     <div class="input-group">
     <input type="password" placeholder="Password" id="password" class="form-control be-0">
@@ -932,43 +935,46 @@
 	
 	submitButton.addEventListener("click", async function (e) {
 	e.preventDefault();
-	const mobileNumber = document.getElementById("mobileNumber").value + "@gmail.com";
+	const mobileNumber = document.getElementById("mobileNumber").value;
 	const password = document.getElementById("password").value;
+  const ShopID = document.getElementById("ShopID").value;
 	
-	try {
-	const userCredential = await signInWithEmailAndPassword(auth, mobileNumber, password);
+  localStorage.setItem("OwnerID", mobileNumber);
+  localStorage.setItem("ShopID", ShopID)
+
+	try { 
+	const userCredential = await signInWithEmailAndPassword(auth, "Owner" + "_" + ShopID + "_" + mobileNumber  + "@gmail.com", password);
 	const user = userCredential.user;
 	console.log("Success! Welcome back!");
 	alert("Login Successfully ! Welcome back!");
 
 	
 	} catch (error) {
-	alert("Login Error");
+    if(error.code == "auth/invalid-login-credentials"){
+      alert("Please Check Your Mobile And Password")
+    }
 	console.log(error);
 	}
 	});
 
-  onValue(ref(database, "Owner/"), (snapshot) => {
-	snapshot.forEach((childSnapshot) => {
-	const childData = childSnapshot.val();
-     const FirstName = childData.FirstName;
-     const LastName = childData.LastName;
-     const Mobile = childData.Mobile;
+  onValue(ref(database, `/Data/Owner/${localStorage.getItem("OwnerID")}/Personal/`), (snapshot) => {
+    snapshot.forEach((childSnapshot) => {
+        const childData = childSnapshot.val();
+        localStorage.setItem("Name", childData.Name)
+        localStorage.setItem("ShopName", childData.ShopName)
+        localStorage.setItem("ShopID", childData.ShopID)
+        
+        
+      
+    });
+});
 
-     if(FirstName){
-        localStorage.setItem("FirstName", FirstName);
-        localStorage.setItem("LastName", LastName);
-        localStorage.setItem("Mobile", Mobile)
-     }
-	});
-
-	});
 
 	auth.onAuthStateChanged((user) => {
 	if (user) {
 	
 	mainPage.style.display = "block";
-	username.innerHTML = localStorage.getItem("FirstName") + " " + localStorage.getItem("LastName")
+	username.innerHTML = localStorage.getItem("Name")
 	loginPage.style.display = "none";
 	}
 	else {
@@ -1171,7 +1177,7 @@ setInterval(renderTasks, 100)
 	const TotalAmount = ProductAmount*ProductWeight;
 	
 	if (UserName && ProductName) {
-	const usersRef = push(ref(database, `Data/${UserName}`));
+	const usersRef = push(ref(database, `Data/Owner/${localStorage.getItem("OwnerID")}/User/${UserName}`));
 	set(usersRef, {
 	Name: UserName,
 	Product: table.innerHTML,
@@ -1182,7 +1188,7 @@ setInterval(renderTasks, 100)
 
   
 const paymentStatusRef = Payment === "PAID" ? "PAID" : "UNPAID";
-const dataRef = push(ref(database, `Owner/${Day.getMonth()+1}-${Day.getDay()}_To_${Day.getMonth()+1}-${Day.getDay() + 1}/${paymentStatusRef}`));
+const dataRef = push(ref(database, `Data/Owner/${localStorage.getItem("OwnerID")}/${Day.getMonth()+1}-${Day.getDay()}_To_${Day.getMonth()+1}-${Day.getDay() + 1}/${paymentStatusRef}`));
 
 set(dataRef, {
     [Payment]: PreviousPayment
@@ -1206,7 +1212,7 @@ set(dataRef, {
 
   let Day = new Date(); 
 
-	const ClearRecordRef = ref(database, `Owner/${Day.getMonth()+1}-${Day.getDay()}_To_${Day.getMonth()+1}-${Day.getDay()}`);
+	const ClearRecordRef = ref(database, `Data/Owner/${localStorage.getItem("OwnerID")}/${Day.getMonth()+1}-${Day.getDay()}_To_${Day.getMonth()+1}-${Day.getDay()}`);
 	
  async function ClearPreviousRecord(RecordRef){
    try {
@@ -1222,7 +1228,9 @@ set(dataRef, {
 	
 let EraseData = document.querySelector("#EraseData")	
 	
-	
+  let totalPaid = 0;
+  let totalUnpaid = 0;	
+
 	let PList = document.getElementById("PList");
 
 	const ownerID = localStorage.getItem("Mobile");
@@ -1232,9 +1240,8 @@ let EraseData = document.querySelector("#EraseData")
 	})
 	getuserdata.addEventListener("click", function(){
 	
-
 	console.log(UserRef)
-	onValue(ref(database, `Data/${UserRef}`), (snapshot) => {
+	onValue(ref(database, `Data/Owner/${localStorage.getItem("OwnerID")}/${UserRef}`), (snapshot) => {
 	
 	snapshot.forEach((childSnapshot) => {
 	const childData = childSnapshot.val();
@@ -1285,37 +1292,33 @@ ${Product}
 
         PList.innerHTML += RecEl;
 
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(RecEl, 'text/html');
-
-        const PAIDElement = doc.getElementById('PAID');
-        const PaidRec = document.getElementById('PaidRec');
-        if (PAIDElement && PaidRec) {
-            PaidRec.innerHTML = parseFloat(PAIDElement.textContent);
-        }
-
-        const UNPAIDElement = doc.getElementById('UNPAID');
-        const UnPaidRec = document.getElementById('UnPaidRec');
-        if (UNPAIDElement && UnPaidRec) {
-            UnPaidRec.innerHTML = parseFloat(UNPAIDElement.textContent);
+        if (Status === 'PAID') {
+            totalPaid += parseFloat(Total);
+        } else if (Status === 'UNPAID') {
+            totalUnpaid += parseFloat(Total);
         }
 
         ListNum++;
-
-
-
-
-        
-
 }
 	});
 	
+// Display totalPaid and totalUnpaid in your HTML
+const totalPaidElement = document.getElementById('PaidRec');
+if (totalPaidElement) {
+    totalPaidElement.textContent = totalPaid.toFixed(2); // Display totalPaid
+}
+
+const totalUnpaidElement = document.getElementById('UnPaidRec');
+if (totalUnpaidElement) {
+    totalUnpaidElement.textContent = totalUnpaid.toFixed(2); // Display totalUnpaid
+}
+
 	const deleteButtons = document.querySelectorAll("#delBtn");
 	deleteButtons.forEach((btn) => {
 	btn.addEventListener("click", (event) => {
 	const documentIdToDelete = event.target.getAttribute("data-document-id");
 	if (documentIdToDelete) {
-	const documentRefToDelete = ref(database, `Data/${UserRef}/${documentIdToDelete}`);
+	const documentRefToDelete = ref(database, `Data/Owner/${localStorage.getItem("OwnerID")}/${UserRef}/${documentIdToDelete}`);
 	
 	deleteDoc(documentRefToDelete);
 	}
@@ -1363,8 +1366,8 @@ ${Product}
   let CurrentUserID
 	// Assuming you have the 'auth' and 'database' objects defined elsewhere
 	const userCredential = await createUserWithEmailAndPassword(auth, "User" + NewMobile + "@gmail.com", newPassword);
-  const OwnerListUser = push(ref(database, `Data/OwnerListUser/`));
-  const usersRef = push(ref(database, `Data/User/${NewMobile}`))
+  const OwnerListUser = push(ref(database, `Data/Owner/${localStorage.getItem("OwnerID")}/UserList/`));
+  const usersRef = push(ref(database, `Data/Owner/${localStorage.getItem("OwnerID")}/User/${NewMobile}`))
 	CurrentUserID = usersRef.key
   set(usersRef, {
 	UserName: NewUser,
@@ -1392,8 +1395,8 @@ ${Product}
 	
 	} catch (error) {
     let CurrentUserID
-    const OwnerListUser = push(ref(database, `Data/OwnerListUser/`));
-  const usersRef = push(ref(database, `Data/User/${NewMobile}`))
+    const OwnerListUser = push(ref(database, `Data/Owner/${localStorage.getItem("OwnerID")}/UserList/`));
+  const usersRef = push(ref(database, `Data/Owner/${localStorage.getItem("OwnerID")}/User/${NewMobile}`))
 	CurrentUserID = usersRef.key
     if (error.code === 'auth/email-already-in-use') {
     set(usersRef, {
@@ -1428,7 +1431,7 @@ ${Product}
 	let UserList = document.getElementById("UserList");
 	
 	
-	onValue(ref(database, `Data/OwnerListUser/`), (snapshot) => {
+	onValue(ref(database, `Data/Owner/${localStorage.getItem("OwnerID")}/UserList/`), (snapshot) => {
 	
 	snapshot.forEach((childSnapshot) => {
 	const childData = childSnapshot.val();
@@ -1475,8 +1478,8 @@ ${Product}
 	const documentIdToDelete = event.target.getAttribute("data-document-id");
     const documentPathToDelete = event.target.getAttribute("data-user-path");
 	if (documentIdToDelete) {
-	const documentRefToDelete = ref(database, `Data/OwnerListUser/${documentIdToDelete}`);
-	const documentPathRefToDelete = ref(database, `Data/User/${documentPathToDelete}`);	
+	const documentRefToDelete = ref(database, `Data/Owner/${localStorage.getItem("OwnerID")}/UserList/${documentIdToDelete}`);
+	const documentPathRefToDelete = ref(database, `Data/Owner/${localStorage.getItem("OwnerID")}/User/${documentPathToDelete}`);	
 	deleteUserFromDB(documentRefToDelete);
 	deleteUserFromOwner(documentPathRefToDelete);
 	}
@@ -1519,8 +1522,8 @@ ${Product}
 	let EmployeeID
 	const userCredential = await createUserWithEmailAndPassword(auth, EmployeeMobile +"_"+ OwnerIDFromStorage + "@gmail.com", EmployeeMobile);
     
-  const OwnerListEmployee = push(ref(database, `Data/OwnerListEmployee/`));
-  const EmployeeRef = push(ref(database, `Data/Employee/${NewMobile}`))
+  const OwnerListEmployee = push(ref(database, `Data/Owner/${localStorage.getItem("OwnerID")}/EmployeeList/`));
+  const EmployeeRef = push(ref(database, `Data/Owner/${localStorage.getItem("OwnerID")}/Employee/${NewMobile}`))
 	EmployeeID = EmployeeRef.key
   // const EmployeeRef = push(ref(database, `${EmployeeMobile}`));
 	set(EmployeeRef, {
@@ -1549,8 +1552,8 @@ ${Product}
 	} catch (error) {
 
     
-  const OwnerListEmployee = push(ref(database, `Data/OwnerListEmployee/`));
-  const EmployeeRef = push(ref(database, `Data/Employee/${EmployeeMobile}`))
+  const OwnerListEmployee = push(ref(database, `Data/Owner/${localStorage.getItem("OwnerID")}/EmployeeList/`));
+  const EmployeeRef = push(ref(database, `Data/Owner/${localStorage.getItem("OwnerID")}/Employee/${EmployeeMobile}`))
 	let EmployeeID = EmployeeRef.key
 
      if (error.code === 'auth/email-already-in-use') {
@@ -1582,7 +1585,7 @@ alert("User Not Added. Error: " + error);
 	});
 		
 	
-	onValue(ref(database, `Data/OwnerListEmployee/`), (snapshot) => {
+	onValue(ref(database, `Data/Owner/${localStorage.getItem("OwnerID")}/EmployeeList/`), (snapshot) => {
 	
 	snapshot.forEach((childSnapshot) => {
 	const childData = childSnapshot.val();
@@ -1624,8 +1627,8 @@ alert("User Not Added. Error: " + error);
 	const documentIdToDelete = event.target.getAttribute("data-document-id");
 	const documentPathToDelete = event.target.getAttribute("data-employee-path");	
 	if (documentIdToDelete) {
-    const documentRefToDelete = ref(database, `Data/OwnerListEmployee/${documentIdToDelete}`);
-	  const documentPathRefToDelete = ref(database, `Data/Employee/${documentPathToDelete}`);	
+    const documentRefToDelete = ref(database, `Data/Owner/${localStorage.getItem("OwnerID")}/EmployeeList/${documentIdToDelete}`);
+	  const documentPathRefToDelete = ref(database, `Data/Owner/${localStorage.getItem("OwnerID")}/Employee/${documentPathToDelete}`);	
 		deleteEmployee(documentRefToDelete);
 	deleteEmployeeFromOwner(documentPathRefToDelete);
 	}
@@ -1682,7 +1685,7 @@ alert("User Not Added. Error: " + error);
 	AddNewProductListBtn.addEventListener("click", ProductsForm)
 	
 	
-	onValue(ref(database, `Product`), (snapshot) => {
+	onValue(ref(database, `Data/Owner/${localStorage.getItem("OwnerID")}/Product/`), (snapshot) => {
 	
 	snapshot.forEach((childSnapshot) => {
 	const childData = childSnapshot.val();
@@ -1723,7 +1726,7 @@ alert("User Not Added. Error: " + error);
 	btn.addEventListener("click", (event) => {
 	const documentIdToDelete = event.target.getAttribute("data-document-id");
 	if (documentIdToDelete) {
-	const documentRefToDelete = ref(database, `${OwnerIDFromStorage}=Product/${documentIdToDelete}`);
+	const documentRefToDelete = ref(database, `Data/Owner/${localStorage.getItem("OwnerID")}/Product/${documentIdToDelete}`);
 	deleteProduct(documentRefToDelete);
 	}
 	});
