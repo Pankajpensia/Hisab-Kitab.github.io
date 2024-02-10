@@ -1,0 +1,126 @@
+{
+  "Data": {
+    "Owner":{
+      "9817721189":{
+        "Personal":{
+          "-NqIJULMj6gpc-0Hba3R":{
+          "Name": "Pankaj",
+          "Mobile": "9817721189",
+          "Password": "123456",
+          "ShopID": "1234",
+          "ShopName": "Dairy"
+          }
+        },
+        "User": {
+          "1234567890": {
+            "-NqIJFYgklZz3Xdw39Za": {
+              "UserMobile": "1234567890",
+              "UserName": "Aman",
+              "UserPassword": "1234567890"
+            },
+            "-NqIJULMj6gpc-0Has4L": {
+              "Name": "User/1234567890",
+              "Product": "\n\n                      <tr>\n        <th scope=\"row\">Tal</th>\n        <td>30</td>\n        <td>5</td>\n        <td class=\"amountcal\">150</td>\n    </tr><tr>\n        <th scope=\"row\">Tal</th>\n        <td>30</td>\n        <td>5</td>\n        <td class=\"amountcal\">150</td>\n    </tr><tr>\n        <th scope=\"row\">Tal</th>\n        <td>30</td>\n        <td>5</td>\n        <td class=\"amountcal\">150</td>\n    </tr>",
+              "Status": "UNPAID",
+              "Total": 450,
+              "time": "10/2/2024"
+            },
+            "-NqIJa6pOEMYZ71ooyXp": {
+              "Name": "User/1234567890",
+              "Product": "\n\n                      <tr>\n        <th scope=\"row\">Hii</th>\n        <td>10</td>\n        <td>36</td>\n        <td class=\"amountcal\">360</td>\n    </tr><tr>\n        <th scope=\"row\">Hii</th>\n        <td>10</td>\n        <td>36</td>\n        <td class=\"amountcal\">360</td>\n    </tr><tr>\n        <th scope=\"row\">Hii</th>\n        <td>10</td>\n        <td>36</td>\n        <td class=\"amountcal\">360</td>\n    </tr>",
+              "Status": "PAID",
+              "Total": 1530,
+              "time": "10/2/2024"
+            },
+            "-NqIRO2X8hrLJ9Rpj4LH": {
+              "Name": "User/1234567890",
+              "Product": "\n\n                      <tr>\n        <th scope=\"row\">yee</th>\n        <td>9</td>\n        <td>8</td>\n        <td class=\"amountcal\">72</td>\n    </tr><tr>\n        <th scope=\"row\">yee</th>\n        <td>9</td>\n        <td>8</td>\n        <td class=\"amountcal\">72</td>\n    </tr><tr>\n        <th scope=\"row\">yee</th>\n        <td>9</td>\n        <td>8</td>\n        <td class=\"amountcal\">72</td>\n    </tr>",
+              "Status": "UNPAID",
+              "Total": 1746,
+              "time": "10/2/2024"
+            }
+          },
+          "1472580369": {
+            "-NqIJNzCBMghad11geb2": {
+              "UserMobile": "1472580369",
+              "UserName": "Pensia",
+              "UserPassword": "1472580369"
+            }
+          }
+        }, 
+        "UserList":{
+          "-NqIJFYgklZz3Xdw39Za": {
+            "UserMobile": "1234567890",
+            "UserName": "Aman",
+            "UserPassword": "1234567890"
+          },
+          "-NqIJNzCBMghad11geb2": {
+            "UserMobile": "1472580369",
+            "UserName": "Pensia",
+            "UserPassword": "1472580369"
+        }
+        },
+        "EmployeeList":{
+          "-NqIVUgUo4M2e-m_dcwe": {
+            "Mobile": "345345",
+            "Name": "asdf",
+            "Password": "345345"
+          }
+        },
+        "Employee": {
+          "345345": {
+            "-NqIVUgUo4M2e-m_dcwe": {
+              "Mobile": "345345",
+              "Name": "asdf",
+              "Password": "345345"
+            }
+          }
+        },  
+        "Product": {
+        "-NqIYTK_C0R3DQUXyDcy": {
+          "Name": "Dal",
+          "Price": "380"
+        }
+        },
+        "2-6_To_2-7": {
+          "PAID": {
+            "-NqIJa6tA2aXla5FG8sO": {
+              "PAID": 1530
+            }
+          },
+          "UNPAID": {
+            "-NqIJULQC9SCz1DOzUoZ": {
+              "UNPAID": 450
+            },
+            "-NqIRO2pKjBj-OQvZO2_": {
+              "UNPAID": 1746
+            }
+          }
+        },
+        "TodaySale":{
+          "-NqIJULMj6gpc-0Has4L": {
+            "Name": "User/1234567890",
+            "Product": "\n\n                      <tr>\n        <th scope=\"row\">Tal</th>\n        <td>30</td>\n        <td>5</td>\n        <td class=\"amountcal\">150</td>\n    </tr><tr>\n        <th scope=\"row\">Tal</th>\n        <td>30</td>\n        <td>5</td>\n        <td class=\"amountcal\">150</td>\n    </tr><tr>\n        <th scope=\"row\">Tal</th>\n        <td>30</td>\n        <td>5</td>\n        <td class=\"amountcal\">150</td>\n    </tr>",
+            "Status": "UNPAID",
+            "Total": 450,
+            "time": "10/2/2024"
+          },
+          "-NqIJa6pOEMYZ71ooyXp": {
+            "Name": "User/1234567890",
+            "Product": "\n\n                      <tr>\n        <th scope=\"row\">Hii</th>\n        <td>10</td>\n        <td>36</td>\n        <td class=\"amountcal\">360</td>\n    </tr><tr>\n        <th scope=\"row\">Hii</th>\n        <td>10</td>\n        <td>36</td>\n        <td class=\"amountcal\">360</td>\n    </tr><tr>\n        <th scope=\"row\">Hii</th>\n        <td>10</td>\n        <td>36</td>\n        <td class=\"amountcal\">360</td>\n    </tr>",
+            "Status": "PAID",
+            "Total": 1530,
+            "time": "10/2/2024"
+          },
+          "-NqIRO2X8hrLJ9Rpj4LH": {
+            "Name": "User/1234567890",
+            "Product": "\n\n                      <tr>\n        <th scope=\"row\">yee</th>\n        <td>9</td>\n        <td>8</td>\n        <td class=\"amountcal\">72</td>\n    </tr><tr>\n        <th scope=\"row\">yee</th>\n        <td>9</td>\n        <td>8</td>\n        <td class=\"amountcal\">72</td>\n    </tr><tr>\n        <th scope=\"row\">yee</th>\n        <td>9</td>\n        <td>8</td>\n        <td class=\"amountcal\">72</td>\n    </tr>",
+            "Status": "UNPAID",
+            "Total": 1746,
+            "time": "10/2/2024"
+          }
+        }
+  }
+}
+}
+}

@@ -1,0 +1,11 @@
+User Entry = Data/Owner/${localStorage.getItem("OwnerID")}/User/${UserName}
+
+UserList Entry = Data/Owner/${localStorage.getItem("OwnerID")}/UserList/
+
+Time Entry = Data/Owner/${localStorage.getItem("OwnerID")}/
+
+EmployeeList Entry = Data/Owner/${localStorage.getItem("OwnerID")}/EmployeeList/
+
+Employee = Data/Owner/${localStorage.getItem("OwnerID")}/Employee/
+
+Product = Data/Owner/${localStorage.getItem("OwnerID")}/Product/
