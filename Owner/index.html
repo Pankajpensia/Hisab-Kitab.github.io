@@ -281,13 +281,30 @@
                 <!-- Features -->
 
                 <div class="features-box">
+                 
                   <div class="row m-b20 g-3">
+              
                     <div class="col">
-                      <button class="btn btn-primary" id="DailyEntryBtn" style="width: 150px; height: 150px;">
+                      <button class="btn btn-primary" id="DailyEntryBtn" style="position:relative;  width: 150px; height: 150px; left: 75px;">
                         <h4 style="color: white;">
 <svg xmlns="http://www.w3.org/2000/svg" class="my-3"  height="32" width="32" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path fill="#ffffff" d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160V416c0 53 43 96 96 96H352c53 0 96-43 96-96V320c0-17.7-14.3-32-32-32s-32 14.3-32 32v96c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V160c0-17.7 14.3-32 32-32h96c17.7 0 32-14.3 32-32s-14.3-32-32-32H96z"/></svg>
 <br>
                           Daily Entry
+                        </h4>
+                      </button>
+                    </div>
+
+                   
+                  </div>     
+
+                  <div class="row m-b20 g-3">
+              
+                    <div class="col">
+                      <button class="btn btn-danger" id="ManageHistoryBtn" style="width: 150px; height: 150px;">
+                        <h4 style="color: white;">
+<svg xmlns="http://www.w3.org/2000/svg" class="my-3"  height="32" width="32" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path fill="#ffffff" d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160V416c0 53 43 96 96 96H352c53 0 96-43 96-96V320c0-17.7-14.3-32-32-32s-32 14.3-32 32v96c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V160c0-17.7 14.3-32 32-32h96c17.7 0 32-14.3 32-32s-14.3-32-32-32H96z"/></svg>
+<br>
+                          Manage History
                         </h4>
                       </button>
                     </div>
@@ -318,7 +335,7 @@
                       <button class="btn bg-primary" id="ManageEmployessBtn" style="width: 150px; height: 150px;">
                         <h4 style="color: white;">
 <svg xmlns="http://www.w3.org/2000/svg" class="my-3" height="32" width="24" viewBox="0 0 384 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path fill="#ffffff" d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V64c0-35.3-28.7-64-64-64H64zm96 320h64c44.2 0 80 35.8 80 80c0 8.8-7.2 16-16 16H96c-8.8 0-16-7.2-16-16c0-44.2 35.8-80 80-80zm-32-96a64 64 0 1 1 128 0 64 64 0 1 1 -128 0zM144 64h96c8.8 0 16 7.2 16 16s-7.2 16-16 16H144c-8.8 0-16-7.2-16-16s7.2-16 16-16z"/></svg>
-
+                            <br>
                           Manage Employees
                         </h4>
                       </button>
@@ -707,6 +724,60 @@
           </div>
         </div>
 
+        <div id="History-Page" style="display: none; position: relative; top: 60px;">
+          <button class="btn btn-danger" id="ClearHistoryBtn" >Clear History</button>
+          <div id="UnPaidHistory" class="bg-danger rounded text-white text-center"> 0 </div>
+          <div id="PaidHistory" class="bg-success rounded text-white text-center"> 0 </div>
+          <style type="text/css">
+          
+          #UnPaidHistory,
+          #PaidHistory,
+          #EraseData{
+          position: absolute;
+          top:0%;
+          right:2.5%;
+          width:45%; 
+          height: 50px;
+          font-size:25px;
+          line-height:50px;
+          }
+          
+          #ClearHistoryBtn{
+            position: absolute;
+    top: 80px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+          }
+
+          #EraseData{
+            top: 60px;
+            width:95%;
+            font-size:20px;
+          }
+          
+          #PaidHistory {
+          left:2.5%; 
+          }
+          
+          </style>         
+          <div class="container" >
+            <div class="col-12" style="margin-top:100px" >
+              <div class="card">
+                <div class="card-header d-block">
+                  <h5 class="title">Manage History</h5>
+                </div>
+<!-- Dashboard Area -->
+                <div class="card-body">
+                  <div class="accordion accordion-danger-solid" id="HistoryBox"   >
+    
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
         <div id="Previous-Page" style="display: none; position: relative; top: 60px;">
           <div id="UnPaidRec" class="bg-danger rounded text-white text-center"> 0 </div>
           <div id="PaidRec" class="bg-success rounded text-white text-center"> 0 </div>
@@ -894,7 +965,7 @@
 	let ProductListPrice = document.getElementById("ProductListPrice")
 	let AddNewProductListBtn = document.getElementById("AddNewProductList")
 	let NewProductsList = document.getElementById("NewProductsList")
-	let OwnerIDFromStorage = localStorage.getItem("Mobile")
+	let OwnerIDFromStorage = localStorage.getItem("OwnerID")
 	
 	const currentDate = new Date();
 	
@@ -1167,7 +1238,7 @@ function AddOfflineTaskFunction() {
 
 setInterval(renderTasks, 100)
 	
-	function submitForm(e) {
+function submitForm(e) {
     let Day = new Date();
 	e.preventDefault()
 	const UserName = NewUserName.value;
@@ -1177,52 +1248,29 @@ setInterval(renderTasks, 100)
 	const TotalAmount = ProductAmount*ProductWeight;
 	
 	if (UserName && ProductName) {
-	const usersRef = push(ref(database, `Data/Owner/${localStorage.getItem("OwnerID")}/User/${UserName}`));
+	const usersRef = push(ref(database, `Data/Owner/${localStorage.getItem("OwnerID")}/${UserName}`));
+  const OwnerRef = push(ref(database, `Data/Owner/${localStorage.getItem("OwnerID")}/TodaySale`))
 	set(usersRef, {
 	Name: UserName,
 	Product: table.innerHTML,
 	Status: Payment,
   Total: PreviousPayment,
-	time: time
+	time: time,
+  ShopName: localStorage.getItem("ShopName")
 	})
 
-  
-const paymentStatusRef = Payment === "PAID" ? "PAID" : "UNPAID";
-const dataRef = push(ref(database, `Data/Owner/${localStorage.getItem("OwnerID")}/${Day.getMonth()+1}-${Day.getDay()}_To_${Day.getMonth()+1}-${Day.getDay() + 1}/${paymentStatusRef}`));
-
-set(dataRef, {
-    [Payment]: PreviousPayment
-}).then(() => {
-    alert("Record Added Successfully");
-    location.reload();
-}).catch((error) => {
-    alert("Error: " + error.message);
-}).then(() => {
-	alert("Record Added SuccessFully");
-	location.reload();
+	set(OwnerRef, {
+	Name: UserName,
+	Product: table.innerHTML,
+	Status: Payment,
+  Total: PreviousPayment,
+	time: time,
+  ShopName: localStorage.getItem("ShopName")
 	})
-	.catch((error) => {
-	alert("Product Not Added", error);
-	});
-	} else {
-	alert("Please enter both a Name and a Price.");
-	}
-	
-	}
 
-  let Day = new Date(); 
-
-	const ClearRecordRef = ref(database, `Data/Owner/${localStorage.getItem("OwnerID")}/${Day.getMonth()+1}-${Day.getDay()}_To_${Day.getMonth()+1}-${Day.getDay()}`);
-	
- async function ClearPreviousRecord(RecordRef){
-   try {
-      await remove(RecordRef)
-   } catch (error) {
-      console.log(error) 
-   }
   }
-
-  ClearPreviousRecord(ClearRecordRef)
+	
+	}
 
 	NewProductAddBtn.addEventListener("click", submitForm)
 	
@@ -1241,6 +1289,8 @@ let EraseData = document.querySelector("#EraseData")
 	getuserdata.addEventListener("click", function(){
 	
 	console.log(UserRef)
+
+
 	onValue(ref(database, `Data/Owner/${localStorage.getItem("OwnerID")}/${UserRef}`), (snapshot) => {
 	
 	snapshot.forEach((childSnapshot) => {
@@ -1250,6 +1300,7 @@ let EraseData = document.querySelector("#EraseData")
 	const Total = childData.Total;
 	const Status = childData.Status;
 	const Time = childData.time
+  let ShopName = childData.ShopName
 	const documentId = childSnapshot.key;
 
 
@@ -1283,6 +1334,12 @@ ${Product}
 <td>
 </td>
 </tr>
+<tr>
+<td>Shop:-</td>
+<td><b>${ShopName}</b></td>
+<td>
+</td>
+</tr>
 </tfoot>
 </table>
 	</div>
@@ -1301,7 +1358,7 @@ ${Product}
         ListNum++;
 }
 	});
-	
+});
 // Display totalPaid and totalUnpaid in your HTML
 const totalPaidElement = document.getElementById('PaidRec');
 if (totalPaidElement) {
@@ -1350,22 +1407,119 @@ if (totalUnpaidElement) {
 	}, 500);
 	}
 	}
-	})
+
+
+  
+  let HistoryPaid = 0;
+  let HistoryUnPaid = 0;
+  let HistoryNum = 0;
+  onValue(ref(database, `Data/Owner/${localStorage.getItem("OwnerID")}/TodaySale`), (snapshot) => {
 	
+	snapshot.forEach((childSnapshot) => {
+	const childData = childSnapshot.val();
+	let Name = childData.Name;
+	const Product = childData.Product; // It seems like you're missing 'LastPrice' in your data structure
+	const Total = childData.Total;
+	const Status = childData.Status;
+	const Time = childData.time
+	const documentId = childSnapshot.key;
+
+if(Product){
+
+let RecEl = `
+	<div class="accordion-item" id="hide">
+	<div class="accordion-header collapsed bg-warning" id="accord-2${ListNum}One" data-bs-toggle="collapse" data-bs-target="#collapse2${ListNum}One" aria-controls="collapse2${ListNum}One" aria-expanded="false" role="button"><span class="accordion-header-text text-white">Date:- ${time} - ${Status} - ${Total}</span>
+	<span class="text-white" style="position: absolute; right: 15px;">
+	<i class="fa-solid fa-trash" data-document-id="${documentId}" id="delBtn"></i>
+	</span>
+	</div>
 	
+	<div id="collapse2${ListNum}One" class="accordion__body collapse" aria-labelledby="accord-2${ListNum}One" data-bs-parent="#accordion-two" style="">
+	<div class="accordion-body-text">
+<table class="table rounded" id="usertable">
+<thead>
+<tr>
+<th scope="col">Name</th>
+<th scope="col">Price</th>
+<th scope="col">Weight</th>
+<th scope="col">Total</th>
+</tr>
+</thead>
+${Product}
+<tfoot>
+<tr>
+<td>Payment:-</td>
+<td><b>${Status}</b></td>
+<td>
+</td>
+</tr>
+</tfoot>
+</table>
+	</div>
+	</div>
+	</div>`;
+
+
+        HistoryBox.innerHTML += RecEl;
+
+        if (Status === 'PAID') {
+            HistoryPaid += parseFloat(Total);
+        } else if (Status === 'UNPAID') {
+            HistoryUnPaid += parseFloat(Total);
+        }
+
+        ListNum++;
+        
+}
+
+	});
+  const TotalPaidHistory = document.getElementById('PaidHistory');
+if (TotalPaidHistory) {
+  TotalPaidHistory.textContent = HistoryPaid.toFixed(2); // Display totalPaid
+}
+
+const TotalUnPaidHistory = document.getElementById('UnPaidHistory');
+if (TotalUnPaidHistory) {
+  TotalUnPaidHistory.textContent = HistoryUnPaid.toFixed(2); // Display totalUnpaid
+}
 	
+  });
+	const ClearHistoryBtn = document.querySelectorAll("#ClearHistoryBtn");
+	ClearHistoryBtn.forEach((btn) => {
+	btn.addEventListener("click", (event) => {
+
+	const documentRefToDelete = ref(database, `Data/Owner/${localStorage.getItem("OwnerID")}/TodaySale`);
+	
+	ClearHistory(documentRefToDelete);
+	
+	});
+	});
+
+	async function ClearHistory(docRef) {
+	try {
+	await remove(docRef);
+	alert("Record successfully deleted!");
+	location.reload();
+	} catch (error) {
+	console.error(error);
+	setInterval(function() {
+	location.reload();
+	}, 500);
+	}
+	}
+
 	AddNewUserBtn.addEventListener('click', async function (e) {
 	e.preventDefault();
 	
 	const NewUser = document.getElementById('UserName').value;
 	const NewMobile = document.getElementById('UserMobile').value;
-	
+	let OwnerID = localStorage.getItem("OwnerID")
 	const newPassword = NewMobile;
 	
 	try {
   let CurrentUserID
 	// Assuming you have the 'auth' and 'database' objects defined elsewhere
-	const userCredential = await createUserWithEmailAndPassword(auth, "User" + NewMobile + "@gmail.com", newPassword);
+	const userCredential = await createUserWithEmailAndPassword(auth, "User" + "_" + NewMobile +"_"+ OwnerID + "@gmail.com", newPassword);
   const OwnerListUser = push(ref(database, `Data/Owner/${localStorage.getItem("OwnerID")}/UserList/`));
   const usersRef = push(ref(database, `Data/Owner/${localStorage.getItem("OwnerID")}/User/${NewMobile}`))
 	CurrentUserID = usersRef.key
@@ -1431,7 +1585,7 @@ if (totalUnpaidElement) {
 	let UserList = document.getElementById("UserList");
 	
 	
-	onValue(ref(database, `Data/Owner/${localStorage.getItem("OwnerID")}/UserList/`), (snapshot) => {
+	onValue(ref(database, `Data/Owner/${localStorage.getItem("OwnerID")}/UserList`), (snapshot) => {
 	
 	snapshot.forEach((childSnapshot) => {
 	const childData = childSnapshot.val();
@@ -1520,7 +1674,7 @@ if (totalUnpaidElement) {
 	
 	try {
 	let EmployeeID
-	const userCredential = await createUserWithEmailAndPassword(auth, EmployeeMobile +"_"+ OwnerIDFromStorage + "@gmail.com", EmployeeMobile);
+	const userCredential = await createUserWithEmailAndPassword(auth, "Employee" + "_"+EmployeeMobile +"_"+ OwnerIDFromStorage + "@gmail.com", EmployeeMobile);
     
   const OwnerListEmployee = push(ref(database, `Data/Owner/${localStorage.getItem("OwnerID")}/EmployeeList/`));
   const EmployeeRef = push(ref(database, `Data/Owner/${localStorage.getItem("OwnerID")}/Employee/${NewMobile}`))
@@ -1783,10 +1937,14 @@ alert("User Not Added. Error: " + error);
 
       const loginPage = document.querySelector("#Login-Page");
       
+      const historyPage = document.querySelector("#History-Page")
+
       const headerName = document.getElementById("HeaderName");
 
+
+
       function hideAllPages() {
-        const allPages = [homePage, offlinePage, loginPage, entryPage, userPage, employeesPage, previousPage, prizePage];
+        const allPages = [homePage, offlinePage, loginPage, entryPage, userPage, employeesPage, previousPage, prizePage, historyPage];
 
         allPages.forEach((page) => {
           page.style.display = "none";
@@ -1808,6 +1966,16 @@ alert("User Not Added. Error: " + error);
         headerName.innerHTML = "Home Page";
 
         homePage.style.display = "block";
+
+        setActiveClass(HomePageBtn);
+      });
+
+      ManageHistoryBtn.addEventListener("click", function () {
+        hideAllPages();
+
+        headerName.innerHTML = "History Page";
+
+        historyPage.style.display = "block";
 
         setActiveClass(HomePageBtn);
       });
@@ -1922,4 +2090,3 @@ alert("User Not Added. Error: " + error);
     </script>
   </body>
 </html>
-
