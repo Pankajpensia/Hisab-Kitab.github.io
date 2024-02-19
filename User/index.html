@@ -40,6 +40,28 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+
+   <style>
+
+    @media print {
+      .menubar-area{
+        display: none;
+      }
+
+      #UnPaidRec{
+        display: none;
+      }
+
+      #PaidRec{
+        display: none;
+      }
+
+      .main-bar{
+        display: none;
+      }
+    }
+   </style>
+
   </head>
 
   <body>
@@ -61,7 +83,10 @@
 <div class="account-area">
 <form class="">
 <div class="input-group">
-<input type="tel" placeholder="User Name" id="mobileNumber"   class="form-control">
+<input type="tel" placeholder="Owner ID" id="OwnerID"   class="form-control">
+</div>
+<div class="input-group">
+<input type="tel" placeholder="User ID" id="mobileNumber"   class="form-control">
 </div>
 <!-- <div class="input-group">
 <input type="text" placeholder="Password" id="Password" class="form-control be-0">
@@ -276,7 +301,7 @@ Password.type = "password"
  </div>
  
  <script type="text/javascript">
- 
+ let date = document.getElementById("date")
 
 var currentDate = new Date();
 
@@ -349,7 +374,7 @@ var day = currentDate.getDate();
 
                 <div class="card-body">
                   <div class="accordion accordion-danger-solid" id="PList">
-     
+               
                   </div>
                 </div>
               </div>
@@ -464,19 +489,19 @@ const loginPage = document.getElementById("Login-Page");
 
 submitButton.addEventListener("click", async function (e) {
   e.preventDefault();
-
+  let OwnerID = document.getElementById("OwnerID").value;
   let inputMobileNumber = document.getElementById("mobileNumber").value;
   // const password = document.getElementById("Password").value;
-
+  localStorage.setItem("OwnerID", OwnerID)
   try {
-    const userCredential = await signInWithEmailAndPassword(auth,"User" + inputMobileNumber + "@gmail.com", inputMobileNumber);
+    const userCredential = await signInWithEmailAndPassword(auth,"User"+"_"+ inputMobileNumber + "_" + OwnerID + "@gmail.com", inputMobileNumber);
     const user = userCredential.user;
     inputMobileNumber = inputMobileNumber.replace("@gmail.com", "");
     localStorage.setItem("MobileNumber", inputMobileNumber);
  
     console.log("Success! Welcome back!");
     alert("Login Successfully ! Welcome back!");
-    onValue(ref(database, `Data/User/${inputMobileNumber}`), (snapshot) => {
+    onValue(ref(database, `Data/Owner/${localStorage.getItem("OwnerID")}/User/${inputMobileNumber}`), (snapshot) => {
 	snapshot.forEach((childSnapshot) => {
 	const childData = childSnapshot.val();
 	localStorage.setItem("FirstName", childData.UserName);
@@ -521,10 +546,10 @@ let ListNum = 1;
 let ProductSection = document.getElementById("ProductSection")
 
 const mobileNumber = localStorage.getItem("MobileNumber");
-const userRef = ref(database, `Data/User/${mobileNumber}`);
-const productRef = ref(database, "Product");
+const userRef = ref(database, `Data/Owner/${localStorage.getItem("OwnerID")}/User/${mobileNumber}`);
+const productRef = ref(database, `Data/Owner/${localStorage.getItem("OwnerID")}/Product`);
 
-onValue(ref(database, "Product"), (snapshot) => {
+onValue(ref(database, `Data/Owner/${localStorage.getItem("OwnerID")}/Product`), (snapshot) => {
   snapshot.forEach((childSnapshot) => {
 let data = childSnapshot.val();
     ProductSection.innerHTML += `
@@ -556,10 +581,16 @@ onValue(userRef, (snapshot) => {
     });
 });
 
-onValue(ref(database, `Data/User/${localStorage.getItem("MobileNumber")}`), (snapshot) => {
+window.addEventListener("load", function(){
+
+
+let totalPaid = 0;
+let totalUnpaid = 0
+
+onValue(ref(database, `Data/Owner/${localStorage.getItem("OwnerID")}/User/${localStorage.getItem("MobileNumber")}`), (snapshot) => {
     snapshot.forEach((childSnapshot) => {
         const childData = childSnapshot.val();
-        const { Product, Amount, Weight, Status, Total , time } = childData;
+        const { Product, Amount, Weight, Status, Total , time, ShopName } = childData;
 if(Product){
 
 
@@ -591,6 +622,12 @@ ${Product}
 <td>
 </td>
 </tr>
+<tr>
+<td>Shop:-</td>
+<td colspan="3"><b>${ShopName}</b></td>
+<td>
+</td>
+</tr>
 </tfoot>
 </table>
 	</div>
@@ -599,33 +636,37 @@ ${Product}
 
         PList.innerHTML += RecEl;
 
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(RecEl, 'text/html');
-
-        const PAIDElement = doc.getElementById('PAID');
-        const PaidRec = document.getElementById('PaidRec');
-        if (PAIDElement && PaidRec) {
-            PaidRec.innerHTML = parseFloat(PAIDElement.textContent);
-        }
-
-        const UNPAIDElement = doc.getElementById('UNPAID');
-        const UnPaidRec = document.getElementById('UnPaidRec');
-        if (UNPAIDElement && UnPaidRec) {
-            UnPaidRec.innerHTML = parseFloat(UNPAIDElement.textContent);
-        }
+if (Status === 'PAID') {
+    totalPaid += parseFloat(Total);
+} else if (Status === 'UNPAID') {
+    totalUnpaid += parseFloat(Total);
 }
-        if (Status === 'PAID') {
-            let Accordination = document.querySelectorAll(".accordion-header");
-            Accordination.forEach(item => {
-                item.classList.toggle("bg-success");
-                item.classList.remove("bg-danger");
-            });
-        }
-        ListNum++;
-    });
+const totalPaidElement = document.getElementById('PaidRec');
+if (totalPaidElement) {
+    totalPaidElement.textContent = totalPaid.toFixed(2); // Display totalPaid
+}
 
-});
+const totalUnpaidElement = document.getElementById('UnPaidRec');
+if (totalUnpaidElement) {
+    totalUnpaidElement.textContent = totalUnpaid.toFixed(2)
+}
 
+ListNum++;
+}
+	});
+		});
+	
+// Display totalPaid and totalUnpaid in your HTML
+const totalPaidElement = document.getElementById('PaidRec');
+if (totalPaidElement) {
+    totalPaidElement.textContent = totalPaid.toFixed(2); // Display totalPaid
+}
+
+const totalUnpaidElement = document.getElementById('UnPaidRec');
+if (totalUnpaidElement) {
+
+}
+})
 
 </script>
 
