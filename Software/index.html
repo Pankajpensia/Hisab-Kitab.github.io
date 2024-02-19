@@ -298,11 +298,23 @@
                 <div class="features-box">
                   <div class="row m-b20 g-3">
                     <div class="col">
-                      <button class="btn btn-primary" id="DailyEntryBtn" style="width: 150px; height: 150px;">
+                      <button class="btn btn-primary" id="DailyEntryBtn" style="width: 150px; height: 150px; margin-left: 75px;">
                         <h4 style="color: white;">
 <svg xmlns="http://www.w3.org/2000/svg" class="my-3"  height="32" width="32" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path fill="#ffffff" d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160V416c0 53 43 96 96 96H352c53 0 96-43 96-96V320c0-17.7-14.3-32-32-32s-32 14.3-32 32v96c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V160c0-17.7 14.3-32 32-32h96c17.7 0 32-14.3 32-32s-14.3-32-32-32H96z"/></svg>
 <br>
-                          Daily Entry
+                          New Entry
+                        </h4>
+                      </button>
+                    </div>
+
+                  </div>
+                  <div class="row m-b20 g-3">
+                    <div class="col">
+                      <button class="btn btn-danger" id="HistoryPageBtn" style="width: 150px; height: 150px;">
+                        <h4 style="color: white;">
+<svg xmlns="http://www.w3.org/2000/svg" class="my-3"  height="32" width="32" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path fill="#ffffff" d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160V416c0 53 43 96 96 96H352c53 0 96-43 96-96V320c0-17.7-14.3-32-32-32s-32 14.3-32 32v96c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V160c0-17.7 14.3-32 32-32h96c17.7 0 32-14.3 32-32s-14.3-32-32-32H96z"/></svg>
+<br>
+                          History
                         </h4>
                       </button>
                     </div>
@@ -386,6 +398,7 @@
                   <style>
                     .form-input{
                       margin-left: 20px;
+                      width: 30%;
                     }
 
                   </style>
@@ -393,7 +406,7 @@
                   <div class="card-body bg-primary rounded">
                     <div class="basic-form style-1">
                       <form style="display: flex; flex-wrap: wrap;">
-                        <div class="mb-3 form-input">
+                        <div class="mb-3 form-input" style="width: 30%;">
                           <span class="input-icon">
                             <i class="fa fa-user"></i>
                           </span>
@@ -438,14 +451,14 @@
                           <input type="tel" class="form-control rounded" placeholder="Total Amount" readonly="readonly" id="NewTotalAmount"  />
                         </div>
                         
-                        <select id="paymentDropdown" class="form-control rounded form-input" style="width: 220px;" >
+                        <select id="paymentDropdown" class="form-control rounded form-input" style="width: 30%;" >
                         <option value="none">Select Payment</option>
                         <option value="UNPAID">Unpaid</option>
                         <option value="PAID">Paid</option>
                         </select>
 
                         <div class="border-top">
-                          <a href="#" id="addItem" class="btn btn-secondary mt-3 btn-rounded btn-block">Add Now</a>
+                          <a href="#" id="addItem" class="btn btn-secondary mt-3 btn-rounded btn-block" style="margin-left: 20px;">Add Now</a>
   
                         </div>
                       </form>
@@ -807,6 +820,67 @@
           </div>
         </div>
 
+        
+        <div id="History-Page" style="display: none;
+    position: absolute;
+    top: 70px;
+    left: 27%;
+    width: 73%;">
+          <div id="UnPaidHistory" class="bg-danger rounded text-white text-center"> 0 </div>
+          <div id="PaidHistory" class="bg-success rounded text-white text-center"> 0 </div>
+          <div id="ClearHistoryBtn" class="bg-danger rounded text-white text-center">Clear History</div>
+          <style type="text/css">
+          
+          #PaidHistory,
+          #UnPaidHistory,
+          #ClearHistoryBtn{
+          position: absolute;
+          top:0%;
+          right:2.5%;
+          width:45%; 
+          height: 50px;
+          font-size:25px;
+          line-height:50px;
+          cursor: pointer;
+          }
+          
+          #ClearHistoryBtn{
+            position: relative;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            top: 90px;
+            width:150px;
+            font-size:15px;
+            z-index: 1111;
+          }
+          
+          #PaidHistory {
+          left:2.5%; 
+          /* background-color: green; */
+          }
+ 
+          #UnPaidHistory{
+            background-color: red;
+          }
+
+          
+          </style>         
+          <div class="container" >
+            <div class="col-12" style="margin-top:60px" >
+              <div class="card">
+                <div class="card-header d-block">
+                  <h5 class="title">History</h5>
+                </div>
+                <div class="card-body">
+                  <div class="accordion accordion-danger-solid" id="HistoryBox" style="display: flex; flex-wrap: wrap;"   >
+    
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div id="Prize-Page" style="display: none;
     position: absolute;
     top: 50px;
@@ -912,7 +986,7 @@
       let ProductListPrice = document.getElementById("ProductListPrice")
       let AddNewProductListBtn = document.getElementById("AddNewProductList")
       let NewProductsList = document.getElementById("NewProductsList")
-      let OwnerIDFromStorage = localStorage.getItem("Mobile")
+      let OwnerIDFromStorage = localStorage.getItem("OwnerID")
       
       const currentDate = new Date();
       
@@ -997,9 +1071,9 @@
       }
       else {
       
-      mainPage.style.display = "none";
+      mainPage.style.display = "block";
       
-      loginPage.style.display = "block";
+      loginPage.style.display = "none";
       }
       });
       
@@ -1038,6 +1112,11 @@
       })
       
     let additembtn = document.querySelector("#addItem").addEventListener("click", addItem)	
+    window.addEventListener("keydown", function(e){
+     if(e.altKey && e.key === "s"){
+        addItem();
+     }
+    })
     
     function addItem() {
         // Get values from input fields
@@ -1185,7 +1264,7 @@
     
     setInterval(renderTasks, 100)
       
-      function submitForm(e) {
+    function submitForm(e) {
         let Day = new Date();
       e.preventDefault()
       const UserName = NewUserName.value;
@@ -1195,13 +1274,24 @@
       const TotalAmount = ProductAmount*ProductWeight;
       
       if (UserName && ProductName) {
-      const usersRef = push(ref(database, `Data/Owner/${localStorage.getItem("OwnerID")}/User/${UserName}`));
+      const usersRef = push(ref(database, `Data/Owner/${localStorage.getItem("OwnerID")}/${UserName}`));
+      const OwnerRef = push(ref(database, `Data/Owner/${localStorage.getItem("OwnerID")}/TodaySale`))
       set(usersRef, {
       Name: UserName,
       Product: table.innerHTML,
       Status: Payment,
       Total: PreviousPayment,
-      time: time
+      time: time,
+      ShopName: localStorage.getItem("ShopName")
+      })
+    
+      set(OwnerRef, {
+      Name: UserName,
+      Product: table.innerHTML,
+      Status: Payment,
+      Total: PreviousPayment,
+      time: time,
+      ShopName: localStorage.getItem("ShopName")
       })
     
       
@@ -1243,6 +1333,12 @@
       ClearPreviousRecord(ClearRecordRef)
     
       NewProductAddBtn.addEventListener("click", submitForm)
+      window.addEventListener("keydown", function(e){
+     if(e.altKey && e.key === "n"){
+      alert("Record In Process")
+      submitForm()
+     }
+    })
       
     let EraseData = document.querySelector("#EraseData")	
       
@@ -1251,7 +1347,7 @@
     
       let PList = document.getElementById("PList");
     
-      const ownerID = localStorage.getItem("Mobile");
+      const ownerID = localStorage.getItem("OnwerID");
       
       UserDropdown.addEventListener("change", function(){
       UserRef = UserDropdown.value
@@ -1259,6 +1355,8 @@
       getuserdata.addEventListener("click", function(){
       
       console.log(UserRef)
+    
+    
       onValue(ref(database, `Data/Owner/${localStorage.getItem("OwnerID")}/${UserRef}`), (snapshot) => {
       
       snapshot.forEach((childSnapshot) => {
@@ -1268,6 +1366,7 @@
       const Total = childData.Total;
       const Status = childData.Status;
       const Time = childData.time
+      let ShopName = childData.ShopName
       const documentId = childSnapshot.key;
     
     
@@ -1301,6 +1400,12 @@
     <td>
     </td>
     </tr>
+    <tr>
+    <td>Shop:-</td>
+    <td><b>${ShopName}</b></td>
+    <td>
+    </td>
+    </tr>
     </tfoot>
     </table>
       </div>
@@ -1319,18 +1424,18 @@
             ListNum++;
     }
       });
-      
+
     // Display totalPaid and totalUnpaid in your HTML
     const totalPaidElement = document.getElementById('PaidRec');
     if (totalPaidElement) {
-        totalPaidElement.textContent = totalPaid.toFixed(2); // Display totalPaid
+        totalPaidElement.textContent = totalPaid.toFixed(1); // Display totalPaid
     }
     
     const totalUnpaidElement = document.getElementById('UnPaidRec');
     if (totalUnpaidElement) {
-        totalUnpaidElement.textContent = totalUnpaid.toFixed(2); // Display totalUnpaid
+        totalUnpaidElement.textContent = totalUnpaid.toFixed(1); // Display totalUnpaid
     }
-    
+  });    
       const deleteButtons = document.querySelectorAll("#delBtn");
       deleteButtons.forEach((btn) => {
       btn.addEventListener("click", (event) => {
@@ -1368,22 +1473,119 @@
       }, 500);
       }
       }
-      })
+    
+    
       
+      let HistoryPaid = 0;
+      let HistoryUnPaid = 0;
+      let HistoryNum = 0;
+      onValue(ref(database, `Data/Owner/${localStorage.getItem("OwnerID")}/TodaySale`), (snapshot) => {
       
+      snapshot.forEach((childSnapshot) => {
+      const childData = childSnapshot.val();
+      let Name = childData.Name;
+      const Product = childData.Product; // It seems like you're missing 'LastPrice' in your data structure
+      const Total = childData.Total;
+      const Status = childData.Status;
+      const Time = childData.time
+      const documentId = childSnapshot.key;
+    
+    if(Product){
+    
+    let RecEl = `
+      <div class="accordion-item" id="hide" style="width:45%; margin-left:15px;">
+      <div class="accordion-header collapsed bg-warning" id="accord-2${ListNum}One" data-bs-toggle="collapse" data-bs-target="#collapse2${ListNum}One" aria-controls="collapse2${ListNum}One" aria-expanded="false" role="button"><span class="accordion-header-text text-white">Date:- ${time} - ${Status} - ${Total}</span>
+      <span class="text-white" style="position: absolute; right: 15px;">
+      <i class="fa-solid fa-trash" data-document-id="${documentId}" id="delBtn"></i>
+      </span>
+      </div>
       
+      <div id="collapse2${ListNum}One" class="accordion__body collapse" aria-labelledby="accord-2${ListNum}One" data-bs-parent="#accordion-two" style="">
+      <div class="accordion-body-text">
+    <table class="table rounded" id="usertable">
+    <thead>
+    <tr>
+    <th scope="col">Name</th>
+    <th scope="col">Price</th>
+    <th scope="col">Weight</th>
+    <th scope="col">Total</th>
+    </tr>
+    </thead>
+    ${Product}
+    <tfoot>
+    <tr>
+    <td>Payment:-</td>
+    <td><b>${Status}</b></td>
+    <td>
+    </td>
+    </tr>
+    </tfoot>
+    </table>
+      </div>
+      </div>
+      </div>`;
+    
+    
+            HistoryBox.innerHTML += RecEl;
+    
+            if (Status === 'PAID') {
+                HistoryPaid += parseFloat(Total);
+            } else if (Status === 'UNPAID') {
+                HistoryUnPaid += parseFloat(Total);
+            }
+    
+            ListNum++;
+            
+    }
+    
+      });
+      const TotalPaidHistory = document.getElementById('PaidHistory');
+    if (TotalPaidHistory) {
+      TotalPaidHistory.textContent = HistoryPaid.toFixed(2); // Display totalPaid
+    }
+    
+    const TotalUnPaidHistory = document.getElementById('UnPaidHistory');
+    if (TotalUnPaidHistory) {
+      TotalUnPaidHistory.textContent = HistoryUnPaid.toFixed(2); // Display totalUnpaid
+    }
+      
+      });
+      const ClearHistoryBtn = document.querySelectorAll("#ClearHistoryBtn");
+      ClearHistoryBtn.forEach((btn) => {
+      btn.addEventListener("click", (event) => {
+    
+      const documentRefToDelete = ref(database, `Data/Owner/${localStorage.getItem("OwnerID")}/TodaySale`);
+      
+      ClearHistory(documentRefToDelete);
+      
+      });
+      });
+    
+      async function ClearHistory(docRef) {
+      try {
+      await remove(docRef);
+      alert("Record successfully deleted!");
+      location.reload();
+      } catch (error) {
+      console.error(error);
+      setInterval(function() {
+      location.reload();
+      }, 500);
+      }
+      }
+    
       AddNewUserBtn.addEventListener('click', async function (e) {
       e.preventDefault();
       
       const NewUser = document.getElementById('UserName').value;
       const NewMobile = document.getElementById('UserMobile').value;
-      
+      let OwnerID = localStorage.getItem("OwnerID")
       const newPassword = NewMobile;
       
       try {
       let CurrentUserID
       // Assuming you have the 'auth' and 'database' objects defined elsewhere
-      const userCredential = await createUserWithEmailAndPassword(auth, "User" + NewMobile + "@gmail.com", newPassword);
+      const userCredential = await createUserWithEmailAndPassword(auth, "User" + "_" + NewMobile +"_"+ OwnerID + "@gmail.com", newPassword);
       const OwnerListUser = push(ref(database, `Data/Owner/${localStorage.getItem("OwnerID")}/UserList/`));
       const usersRef = push(ref(database, `Data/Owner/${localStorage.getItem("OwnerID")}/User/${NewMobile}`))
       CurrentUserID = usersRef.key
@@ -1449,7 +1651,7 @@
       let UserList = document.getElementById("UserList");
       
       
-      onValue(ref(database, `Data/Owner/${localStorage.getItem("OwnerID")}/UserList/`), (snapshot) => {
+      onValue(ref(database, `Data/Owner/${localStorage.getItem("OwnerID")}/UserList`), (snapshot) => {
       
       snapshot.forEach((childSnapshot) => {
       const childData = childSnapshot.val();
@@ -1473,7 +1675,7 @@
       
       
       </div>
-      <div style="margin-left:50px; right:0px; color:red; font-size:20px" class="mb-6">
+      <div style="margin-left:50px; right:0px; color:red; font-size:20px"  class="mb-6">
       <i class="fa-solid fa-trash" data-user-path="${childData.UserMobile}" data-document-id="${userId}" id="delBtn" style="position: relative; top:40px; right: 10px;"></i>
       </div>
       </div>
@@ -1538,7 +1740,7 @@
       
       try {
       let EmployeeID
-      const userCredential = await createUserWithEmailAndPassword(auth, EmployeeMobile +"_"+ OwnerIDFromStorage + "@gmail.com", EmployeeMobile);
+      const userCredential = await createUserWithEmailAndPassword(auth, "Employee" + "_"+EmployeeMobile +"_"+ OwnerIDFromStorage + "@gmail.com", EmployeeMobile);
         
       const OwnerListEmployee = push(ref(database, `Data/Owner/${localStorage.getItem("OwnerID")}/EmployeeList/`));
       const EmployeeRef = push(ref(database, `Data/Owner/${localStorage.getItem("OwnerID")}/Employee/${NewMobile}`))
@@ -1712,7 +1914,7 @@
       
       const ProductId = childSnapshot.key;
       NewProductsList.innerHTML += `
-      <li style="width: 32%; margin-left: 15px; ">
+      <li style="width:35%; margin-left: 15px;">
       <div class="item-content">
       <a href="#" class="item-media"><img src="../assets/images/shop.png" alt="logo" width="55" /></a>
       
@@ -1766,6 +1968,7 @@
       
       
       </script>
+    
     <script src="../assets/js/jquery.js"></script>
 
     <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -1802,13 +2005,24 @@
       
       const headerName = document.getElementById("HeaderName");
 
+      const historyPage = document.getElementById("History-Page")
       function hideAllPages() {
-        const allPages = [offlinePage, loginPage, entryPage, userPage, employeesPage, previousPage, prizePage];
+        const allPages = [offlinePage, loginPage, entryPage, userPage, employeesPage, previousPage,historyPage, prizePage];
 
         allPages.forEach((page) => {
           page.style.display = "none";
         });
       }
+
+      
+      HistoryPageBtn.addEventListener("click", function () {
+      hideAllPages();
+      
+      headerName.innerHTML = "History Page";
+      
+      historyPage.style.display = "block";
+      
+      });
 
       ManageOfflineEntry.addEventListener("click", function () {
       hideAllPages();
@@ -1836,7 +2050,7 @@
       
         homePage.style.display = "block";
       
-        setActiveClass(HomePageBtn);
+        // setActiveClass(HomePageBtn);
       });
 
       // Event listener for DailyEntryBtn
@@ -1848,7 +2062,7 @@
 
         entryPage.style.display = "block";
 
-        setActiveClass(DailyEntryBtn);
+        // setActiveClass(DailyEntryBtn);
       });
       
       SideDaily.addEventListener("click", function () {
@@ -1858,7 +2072,7 @@
       
         entryPage.style.display = "block";
       
-        setActiveClass(DailyEntryBtn);
+        // setActiveClass(DailyEntryBtn);
       });
 
       ManageUserBtn.addEventListener("click", function () {
@@ -1906,16 +2120,55 @@
   
       // Function to set active class on clicked button
 
-      function setActiveClass(clickedButton) {
-        const allButtons = [HomePageBtn, BottomDailyEntryBtn, BottomProductBtn];
+      window.addEventListener('keydown', function(e){
+        if(event.altKey && event.key === "1"){
+            hideAllPages();
+            entryPage.style.display = "block"
+        }
+      })
 
-        allButtons.forEach((button) => {
-          button.classList.remove("active");
-        });
+      window.addEventListener('keydown', function(e){
+        if(event.altKey && event.key === "2"){
+            hideAllPages();
+            historyPage.style.display = "block"
+        }
+      })
 
-        clickedButton.classList.add("active");
-      }
+      window.addEventListener('keydown', function(e){
+        if(event.altKey && event.key === "3"){
+            hideAllPages();
+            previousPage.style.display = "block"
+        }
+      })
 
+      window.addEventListener('keydown', function(e){
+        if(event.altKey && event.key === "4"){
+            hideAllPages();
+            userPage.style.display = "block"
+        }
+      })
+
+      window.addEventListener('keydown', function(e){
+        if(event.altKey && event.key === "5"){
+            hideAllPages();
+            employeesPage.style.display = "block"
+        }
+      })
+
+      window.addEventListener('keydown', function(e){
+        if(event.altKey && event.key === "6"){
+            hideAllPages();
+            prizePage.style.display = "block"
+        }
+      })
+
+
+      window.addEventListener('keydown', function(e){
+        if(event.altKey && event.key === "7"){
+            hideAllPages();
+            offlinePage.style.display = "block"
+        }
+      })
       // Repeat the structur
     </script>
   </body>
